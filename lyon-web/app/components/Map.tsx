@@ -32,7 +32,7 @@ export default function Map() {
       try {
         const response = await fetch('http://localhost:8080/api/vehicles');
         if (!response.ok) {
-           throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setVehicles(data);
@@ -53,18 +53,67 @@ export default function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {vehicles.map((v) => (
-        <Marker key={v.vehicleId} position={[v.latitude, v.longitude]}>
-          <Popup>
-            <div>
-              <strong>Line: {v.lineId}</strong><br />
-              Direction: {v.direction}<br />
-              Delay: {v.delay}<br />
-              Last Update: {new Date(v.timestamp).toLocaleTimeString()}
-            </div>
-          </Popup>
-        </Marker>
-      ))}
+      {vehicles.map((v) => {
+        const lineCodeRegex = /ActIV:Line::(.*?):SYTRAL/;
+        const match = v.lineId.match(lineCodeRegex);
+        const lineCode = match ? match[1] : '?';
+
+        // Determine type and style
+        let bgColor = '#808080'; // Default gray for unknown
+        let type = 'UNKNOWN';
+        let shape = 'border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);';
+
+        if (/^T\d+$/.test(lineCode)) {
+          type = 'TRAM';
+          bgColor = '#9333ea'; // Purple for Tram
+        } else if (/^C\d+$/.test(lineCode)) {
+          type = 'CHRONO';
+          bgColor = '#eab308'; // Yellow/Gold for Chrono
+          // Chrono often square-ish or distinct
+          shape += 'border-radius: 8px;';
+        } else if (/^\d+$/.test(lineCode)) {
+          type = 'BUS';
+          bgColor = '#ef4444'; // Red for Bus
+        } else if (/^TB\d+$/.test(lineCode)) {
+          type = 'TRAMBUS';
+          bgColor = '#14b8a6'; // Teal for Trambus
+        } else {
+          // Keep default gray for unknown
+        }
+
+        const icon = L.divIcon({
+          className: 'custom-vehicle-icon',
+          html: `<div style="background-color: ${bgColor}; ${shape}">${lineCode}</div>`,
+          iconSize: [30, 30],
+          iconAnchor: [15, 15],
+          popupAnchor: [0, -15]
+        });
+
+        return (
+          <Marker key={v.vehicleId} position={[v.latitude, v.longitude]} icon={icon}>
+            <Popup>
+              <div className="p-2">
+                <div className="font-bold text-lg mb-1">{type}: {lineCode}</div>
+                <div className="text-sm text-gray-600 mb-2">ID: {v.vehicleId}</div>
+
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                  <span className="font-semibold">Direction:</span>
+                  <span>{v.direction}</span>
+
+                  <span className="font-semibold">Delay:</span>
+                  <span className={`${v.delay.startsWith('-') ? 'text-green-600' : 'text-red-600'}`}>
+                    {v.delay}
+                  </span>
+                </div>
+
+                <div className="mt-2 text-xs text-gray-400 border-t pt-1">
+                  Updated: {new Date(v.timestamp).toLocaleTimeString()}
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        );
+      })}
     </MapContainer>
   );
 }
