@@ -3,1359 +3,1188 @@
         "vehicleId": "ActIV:Vehicle:Bus:6909:LOC",
         "lineId": "ActIV:Line::16:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.76386,
-        "longitude": 4.910347,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.77461,
+        "longitude": 4.976121,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT54S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3031:LOC",
         "lineId": "ActIV:Line::C14:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78641,
-        "longitude": 4.795403,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M28S"
+        "direction": "inbound",
+        "latitude": 45.78103,
+        "longitude": 4.805312,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M11S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3218:LOC",
         "lineId": "ActIV:Line::3:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.77555,
-        "longitude": 4.775918,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M51S"
+        "direction": "outbound",
+        "latitude": 45.7938,
+        "longitude": 4.762973,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M56S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3633:LOC",
         "lineId": "ActIV:Line::59:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.77846,
-        "longitude": 4.84101,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.83371,
+        "longitude": 4.909049,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT24S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:1023:LOC",
-        "lineId": "ActIV:Line::C12:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:919:LOC",
+        "lineId": "ActIV:Line::T2:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.7401,
-        "longitude": 4.851644,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M4S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:104:LOC",
-        "lineId": "ActIV:Line::RX:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.7613,
-        "longitude": 4.922969,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT10M32S"
+        "latitude": 45.71964,
+        "longitude": 4.917329,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT13S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3023:LOC",
         "lineId": "ActIV:Line::C7:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.69766,
-        "longitude": 4.81934,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M51S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3005:LOC",
-        "lineId": "ActIV:Line::25:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.74464,
-        "longitude": 4.931137,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M26S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2501:LOC",
-        "lineId": "ActIV:Line::C19:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7358,
-        "longitude": 4.785224,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M45S"
+        "latitude": 45.74629,
+        "longitude": 4.842606,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT5M41S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1501:LOC",
         "lineId": "ActIV:Line::C15:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.75976,
-        "longitude": 4.920881,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT4M47S"
+        "direction": "inbound",
+        "latitude": 45.73794,
+        "longitude": 4.921617,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT27S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:1609:LOC",
+        "lineId": "ActIV:Line::C23:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.77901,
+        "longitude": 4.841627,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M33S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2501:LOC",
+        "lineId": "ActIV:Line::C19:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.74463,
+        "longitude": 4.808693,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M29S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4706:LOC",
         "lineId": "ActIV:Line::52:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.76115,
-        "longitude": 4.923531,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M21S"
+        "latitude": 45.72217,
+        "longitude": 4.91413,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT39S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1412:LOC",
         "lineId": "ActIV:Line::C10:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.67364,
-        "longitude": 4.753663,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M20S"
+        "latitude": 45.75269,
+        "longitude": 4.833601,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT21S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4104:LOC",
         "lineId": "ActIV:Line::54:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.66962,
-        "longitude": 4.908089,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT4M12S"
+        "latitude": 45.70248,
+        "longitude": 4.896045,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M54S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:1414:LOC",
+        "lineId": "ActIV:Line::C10:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.70518,
+        "longitude": 4.797351,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M15S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:102:LOC",
         "lineId": "ActIV:Line::RX:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76112,
-        "longitude": 5.044381,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT8M54S"
+        "latitude": 45.75946,
+        "longitude": 4.861924,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT13M9S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:6104:LOC",
         "lineId": "ActIV:Line::C25:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.72102,
-        "longitude": 4.886819,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6M18S"
+        "latitude": 45.68719,
+        "longitude": 4.946887,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT6M39S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:3643:LOC",
-        "lineId": "ActIV:Line::24:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.73398,
-        "longitude": 4.90877,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT14S"
+        "vehicleId": "ActIV:Vehicle:Bus:1511:LOC",
+        "lineId": "ActIV:Line::TB11:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.76371,
+        "longitude": 4.862112,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M24S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2511:LOC",
+        "lineId": "ActIV:Line::90:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.76586,
+        "longitude": 4.804374,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT59M25S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2511:LOC",
+        "lineId": "ActIV:Line::90:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.76586,
+        "longitude": 4.804374,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT38S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2511:LOC",
         "lineId": "ActIV:Line::90:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.75748,
-        "longitude": 4.81579,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6M36S"
+        "latitude": 45.76588,
+        "longitude": 4.804799,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": null
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:1511:LOC",
-        "lineId": "ActIV:Line::TB11:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76612,
-        "longitude": 4.827819,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT10S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1218:LOC",
-        "lineId": "ActIV:Line::40:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2430:LOC",
+        "lineId": "ActIV:Line::33:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.79565,
-        "longitude": 4.830418,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT45S"
+        "latitude": 45.80267,
+        "longitude": 4.851225,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT24S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:3015:LOC",
-        "lineId": "ActIV:Line::C9:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:4201:LOC",
+        "lineId": "ActIV:Line::52:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.74695,
-        "longitude": 4.904709,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT57S"
+        "latitude": 45.76637,
+        "longitude": 4.928895,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT4M8S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:2211:LOC",
-        "lineId": "ActIV:Line::C5:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2439:LOC",
+        "lineId": "ActIV:Line::17:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.7745,
-        "longitude": 4.842708,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT41S"
+        "latitude": 45.70032,
+        "longitude": 4.805587,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT54S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3122:LOC",
         "lineId": "ActIV:Line::C18:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76355,
-        "longitude": 4.837605,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M35S"
+        "direction": "outbound",
+        "latitude": 45.77241,
+        "longitude": 4.819537,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT41S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2224:LOC",
         "lineId": "ActIV:Line::C8:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78541,
-        "longitude": 4.919783,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT2M"
+        "direction": "inbound",
+        "latitude": 45.78568,
+        "longitude": 4.927992,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M4S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3550:LOC",
         "lineId": "ActIV:Line::46:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.75039,
-        "longitude": 4.825088,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2033:LOC",
-        "lineId": "ActIV:Line::TB11:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.75981,
-        "longitude": 4.889312,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT25S"
+        "latitude": 45.75984,
+        "longitude": 4.796504,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT22S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1615:LOC",
         "lineId": "ActIV:Line::C3:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.78505,
-        "longitude": 4.909641,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M18S"
+        "direction": "outbound",
+        "latitude": 45.78129,
+        "longitude": 4.90805,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M30S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4702:LOC",
         "lineId": "ActIV:Line::68:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.75688,
-        "longitude": 4.928525,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M53S"
+        "direction": "outbound",
+        "latitude": 45.73866,
+        "longitude": 4.935985,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2319:LOC",
         "lineId": "ActIV:Line::C24:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.74735,
-        "longitude": 4.746654,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M39S"
+        "direction": "outbound",
+        "latitude": 45.76667,
+        "longitude": 4.790006,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M4S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:826:LOC",
         "lineId": "ActIV:Line::T1:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.73134,
-        "longitude": 4.833252,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M29S"
+        "direction": "outbound",
+        "latitude": 45.75182,
+        "longitude": 4.837027,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT26S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3056:LOC",
         "lineId": "ActIV:Line::C26:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77953,
-        "longitude": 4.879112,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M12S"
+        "direction": "inbound",
+        "latitude": 45.743,
+        "longitude": 4.879096,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2702:LOC",
         "lineId": "ActIV:Line::18:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.6659,
-        "longitude": 4.823005,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M24S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:923:LOC",
-        "lineId": "ActIV:Line::T2:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.72319,
-        "longitude": 4.915014,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT56S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2242:LOC",
-        "lineId": "ActIV:Line::C21:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.75759,
-        "longitude": 4.812889,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M18S"
+        "latitude": 45.69537,
+        "longitude": 4.820675,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M46S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3602:LOC",
         "lineId": "ActIV:Line::60:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.66644,
-        "longitude": 4.850464,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT32S"
+        "latitude": 45.7199,
+        "longitude": 4.854448,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M45S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2420:LOC",
         "lineId": "ActIV:Line::8:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.72258,
-        "longitude": 4.803051,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT14S"
+        "direction": "outbound",
+        "latitude": 45.75023,
+        "longitude": 4.826418,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M8S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:899:LOC",
         "lineId": "ActIV:Line::T3:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.7693,
-        "longitude": 4.951499,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M38S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2021:LOC",
-        "lineId": "ActIV:Line::C13:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.76791,
-        "longitude": 4.831527,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M20S"
+        "latitude": 45.75567,
+        "longitude": 4.861773,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT36S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:842:LOC",
         "lineId": "ActIV:Line::T1:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.77002,
-        "longitude": 4.862254,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT54S"
+        "latitude": 45.73394,
+        "longitude": 4.81811,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT43S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2831:LOC",
         "lineId": "ActIV:Line::TB11:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.76605,
-        "longitude": 4.827983,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.76497,
+        "longitude": 4.908985,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT55S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1110:LOC",
         "lineId": "ActIV:Line::C8:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.78632,
-        "longitude": 4.92514,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M13S"
+        "latitude": 45.75088,
+        "longitude": 4.909663,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT4M28S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:3521:LOC",
+        "lineId": "ActIV:Line::72:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.76365,
+        "longitude": 4.774683,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M25S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3902:LOC",
         "lineId": "ActIV:Line::C16:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.77002,
-        "longitude": 4.862607,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.74301,
+        "longitude": 4.878415,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT13S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3044:LOC",
         "lineId": "ActIV:Line::34:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.74341,
-        "longitude": 4.877315,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT28S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3302:LOC",
-        "lineId": "ActIV:Line::C18:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76966,
-        "longitude": 4.829857,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT7M51S"
+        "latitude": 45.74981,
+        "longitude": 4.82717,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT3M20S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2019:LOC",
         "lineId": "ActIV:Line::C1:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78548,
-        "longitude": 4.837174,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M46S"
+        "direction": "inbound",
+        "latitude": 45.76258,
+        "longitude": 4.85761,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT19S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:2736:LOC",
-        "lineId": "ActIV:Line::C14:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:3302:LOC",
+        "lineId": "ActIV:Line::C18:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76761,
-        "longitude": 4.818022,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT57S"
+        "latitude": 45.76359,
+        "longitude": 4.837414,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT7S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2514:LOC",
         "lineId": "ActIV:Line::88:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.70158,
-        "longitude": 4.798552,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M5S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3001:LOC",
-        "lineId": "ActIV:Line::25:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.7569,
-        "longitude": 4.862712,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT39S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3639:LOC",
-        "lineId": "ActIV:Line::24:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.74847,
-        "longitude": 4.917072,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M10S"
+        "latitude": 45.70384,
+        "longitude": 4.809405,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT7M44S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3637:LOC",
         "lineId": "ActIV:Line::33:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.82226,
-        "longitude": 4.886973,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT27S"
+        "direction": "inbound",
+        "latitude": 45.81993,
+        "longitude": 4.868777,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M36S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1401:LOC",
         "lineId": "ActIV:Line::C22:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.71992,
-        "longitude": 4.693707,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.75397,
+        "longitude": 4.776633,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M1S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:3541:LOC",
+        "lineId": "ActIV:Line::12:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.72444,
+        "longitude": 4.780978,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT19S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4709:LOC",
         "lineId": "ActIV:Line::95:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.77178,
-        "longitude": 4.994046,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M46S"
+        "direction": "outbound",
+        "latitude": 45.76863,
+        "longitude": 5.009907,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M35S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3912:LOC",
         "lineId": "ActIV:Line::C16:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.72782,
-        "longitude": 4.863113,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT18S"
+        "latitude": 45.76642,
+        "longitude": 4.867703,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M45S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2710:LOC",
         "lineId": "ActIV:Line::14:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.75736,
-        "longitude": 4.778596,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT18S"
+        "direction": "inbound",
+        "latitude": 45.73876,
+        "longitude": 4.773169,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M27S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3524:LOC",
         "lineId": "ActIV:Line::14:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.7266,
-        "longitude": 4.778658,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M11S"
+        "direction": "outbound",
+        "latitude": 45.73203,
+        "longitude": 4.779632,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M33S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3904:LOC",
         "lineId": "ActIV:Line::C16:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.74193,
-        "longitude": 4.869044,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT48S"
+        "direction": "inbound",
+        "latitude": 45.72381,
+        "longitude": 4.858546,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT5S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2275:LOC",
         "lineId": "ActIV:Line::C13:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78937,
-        "longitude": 4.847516,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M50S"
+        "direction": "inbound",
+        "latitude": 45.76926,
+        "longitude": 4.831472,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT2M7S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1019:LOC",
         "lineId": "ActIV:Line::C24:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.74739,
-        "longitude": 4.747813,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT4S"
+        "direction": "inbound",
+        "latitude": 45.74911,
+        "longitude": 4.696076,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M20S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2240:LOC",
         "lineId": "ActIV:Line::C2:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.80172,
-        "longitude": 4.856008,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M4S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2701:LOC",
-        "lineId": "ActIV:Line::15:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.66651,
-        "longitude": 4.820722,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M12S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1320:LOC",
-        "lineId": "ActIV:Line::89:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.82167,
-        "longitude": 4.761783,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT16S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2452:LOC",
-        "lineId": "ActIV:Line::90:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76243,
-        "longitude": 4.804156,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT18S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:892:LOC",
-        "lineId": "ActIV:Line::T3:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.75271,
-        "longitude": 4.870653,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT54S"
+        "latitude": 45.7669,
+        "longitude": 4.859262,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M21S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3214:LOC",
         "lineId": "ActIV:Line::61:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.78166,
-        "longitude": 4.805225,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M45S"
+        "direction": "outbound",
+        "latitude": 45.83976,
+        "longitude": 4.738526,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M10S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:2025:LOC",
-        "lineId": "ActIV:Line::TB11:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76358,
-        "longitude": 4.837619,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M47S"
+        "vehicleId": "ActIV:Vehicle:Bus:106:LOC",
+        "lineId": "ActIV:Line::RX:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.76114,
+        "longitude": 4.922344,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT5S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2326:LOC",
+        "lineId": "ActIV:Line::C12:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.71915,
+        "longitude": 4.854542,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT6M34S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2725:LOC",
         "lineId": "ActIV:Line::93:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.70437,
-        "longitude": 4.872867,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M13S"
+        "latitude": 45.68885,
+        "longitude": 4.864626,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M59S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1606:LOC",
         "lineId": "ActIV:Line::C15:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.73459,
-        "longitude": 4.872177,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT52S"
+        "latitude": 45.75759,
+        "longitude": 4.921267,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M43S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2738:LOC",
         "lineId": "ActIV:Line::C14:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.78642,
-        "longitude": 4.795467,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M19S"
+        "latitude": 45.75895,
+        "longitude": 4.845858,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M22S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:902:LOC",
         "lineId": "ActIV:Line::T3:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.75805,
-        "longitude": 4.861866,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT53S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2503:LOC",
-        "lineId": "ActIV:Line::55:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76324,
-        "longitude": 4.800952,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M28S"
+        "direction": "outbound",
+        "latitude": 45.77169,
+        "longitude": 4.955656,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT21S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3029:LOC",
         "lineId": "ActIV:Line::C14:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75422,
-        "longitude": 4.847005,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT11S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2505:LOC",
-        "lineId": "ActIV:Line::55:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77077,
-        "longitude": 4.7755,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT32S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:894:LOC",
-        "lineId": "ActIV:Line::T7:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76899,
-        "longitude": 4.951025,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT22S"
+        "latitude": 45.7821,
+        "longitude": 4.795931,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT6S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:909:LOC",
         "lineId": "ActIV:Line::T2:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.69469,
-        "longitude": 4.938626,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT18S"
+        "latitude": 45.74214,
+        "longitude": 4.877189,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M20S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:1403:LOC",
+        "lineId": "ActIV:Line::C2:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.77068,
+        "longitude": 4.856541,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT1M25S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2221:LOC",
+        "lineId": "ActIV:Line::C8:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.75539,
+        "longitude": 4.92119,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT33S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:804:LOC",
         "lineId": "ActIV:Line::T1:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7741,
-        "longitude": 4.864002,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M21S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2234:LOC",
-        "lineId": "ActIV:Line::C5:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76216,
-        "longitude": 4.845245,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT23S"
+        "latitude": 45.77793,
+        "longitude": 4.866898,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M21S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3618:LOC",
         "lineId": "ActIV:Line::38:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.76292,
-        "longitude": 4.857459,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
+        "latitude": 45.78834,
+        "longitude": 4.834795,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M3S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:2234:LOC",
+        "lineId": "ActIV:Line::C5:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.7519,
+        "longitude": 4.845883,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT14S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2247:LOC",
         "lineId": "ActIV:Line::C13:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.74383,
-        "longitude": 4.878928,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3605:LOC",
-        "lineId": "ActIV:Line::BR60:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7492,
-        "longitude": 4.827181,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M47S"
+        "latitude": 45.76245,
+        "longitude": 4.851933,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M24S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3065:LOC",
         "lineId": "ActIV:Line::C26:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.78042,
-        "longitude": 4.87559,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M29S"
+        "direction": "outbound",
+        "latitude": 45.7694,
+        "longitude": 4.881422,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT13S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3052:LOC",
         "lineId": "ActIV:Line::34:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.74903,
-        "longitude": 4.829308,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT5S"
+        "latitude": 45.73437,
+        "longitude": 4.881345,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT2S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:851:LOC",
-        "lineId": "ActIV:Line::T1:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:1510:LOC",
+        "lineId": "ActIV:Line::C11:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75484,
-        "longitude": 4.842393,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT59S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2235:LOC",
-        "lineId": "ActIV:Line::70:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.81304,
-        "longitude": 4.860363,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M3S"
+        "latitude": 45.75683,
+        "longitude": 4.880005,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT35S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2278:LOC",
         "lineId": "ActIV:Line::C5:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.81681,
-        "longitude": 4.904885,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M55S"
+        "direction": "inbound",
+        "latitude": 45.79716,
+        "longitude": 4.875694,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT4M24S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:1405:LOC",
-        "lineId": "ActIV:Line::C10:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2456:LOC",
+        "lineId": "ActIV:Line::90:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.75093,
-        "longitude": 4.83239,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT4M18S"
+        "latitude": 45.76189,
+        "longitude": 4.808543,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M20S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:1316:LOC",
+        "lineId": "ActIV:Line::C6:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.78334,
+        "longitude": 4.766036,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1111:LOC",
         "lineId": "ActIV:Line::C8:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75579,
-        "longitude": 4.921234,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M42S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3219:LOC",
-        "lineId": "ActIV:Line::20:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.81564,
-        "longitude": 4.796646,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT12S"
+        "latitude": 45.78537,
+        "longitude": 4.919782,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M3S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2014:LOC",
         "lineId": "ActIV:Line::C13:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75711,
-        "longitude": 4.862092,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT39S"
+        "latitude": 45.77402,
+        "longitude": 4.827624,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M2S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:3624:LOC",
-        "lineId": "ActIV:Line::59:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.82421,
-        "longitude": 4.906067,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M7S"
+        "vehicleId": "ActIV:Vehicle:Bus:839:LOC",
+        "lineId": "ActIV:Line::T5:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.73868,
+        "longitude": 4.936535,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M1S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3626:LOC",
         "lineId": "ActIV:Line::9:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.82256,
-        "longitude": 4.872825,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M17S"
+        "direction": "outbound",
+        "latitude": 45.76699,
+        "longitude": 4.83834,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M27S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:2308:LOC",
-        "lineId": "ActIV:Line::C12:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:3014:LOC",
+        "lineId": "ActIV:Line::C9:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.70858,
-        "longitude": 4.855202,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT55S"
+        "latitude": 45.75343,
+        "longitude": 4.891922,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M11S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:2438:LOC",
-        "lineId": "ActIV:Line::78:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2032:LOC",
+        "lineId": "ActIV:Line::C23:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.65471,
-        "longitude": 4.793891,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M48S"
+        "latitude": 45.75997,
+        "longitude": 4.888933,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT49S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2802:LOC",
         "lineId": "ActIV:Line::TB11:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76488,
-        "longitude": 4.908852,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:4209:LOC",
-        "lineId": "ActIV:Line::52:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76071,
-        "longitude": 4.920463,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT4M47S"
+        "latitude": 45.76463,
+        "longitude": 4.829256,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT1M48S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2705:LOC",
         "lineId": "ActIV:Line::15:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75613,
-        "longitude": 4.833307,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT19S"
+        "latitude": 45.68089,
+        "longitude": 4.825801,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT5S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2519:LOC",
         "lineId": "ActIV:Line::88:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.71352,
-        "longitude": 4.807219,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6M16S"
+        "direction": "outbound",
+        "latitude": 45.69437,
+        "longitude": 4.792964,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M17S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:896:LOC",
         "lineId": "ActIV:Line::T3:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77495,
-        "longitude": 4.975374,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT11S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3502:LOC",
-        "lineId": "ActIV:Line::19:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77335,
-        "longitude": 4.783191,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT7S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3634:LOC",
-        "lineId": "ActIV:Line::9:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77276,
-        "longitude": 4.838371,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M16S"
+        "direction": "inbound",
+        "latitude": 45.77216,
+        "longitude": 4.956377,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2748:LOC",
         "lineId": "ActIV:Line::35:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.73586,
+        "longitude": 4.856219,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M11S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:3634:LOC",
+        "lineId": "ActIV:Line::9:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.73923,
-        "longitude": 4.851951,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6M59S"
+        "latitude": 45.82455,
+        "longitude": 4.868423,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1519:LOC",
         "lineId": "ActIV:Line::TB11:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76368,
-        "longitude": 4.852028,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT28S"
+        "direction": "outbound",
+        "latitude": 45.76329,
+        "longitude": 4.833401,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M40S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:3705:LOC",
-        "lineId": "ActIV:Line::7:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78512,
-        "longitude": 4.906479,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT26S"
+        "vehicleId": "ActIV:Vehicle:Bus:2241:LOC",
+        "lineId": "ActIV:Line::C21:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.75593,
+        "longitude": 4.815656,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT59S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3614:LOC",
         "lineId": "ActIV:Line::38:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7949,
-        "longitude": 4.840678,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M49S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2271:LOC",
-        "lineId": "ActIV:Line::C8:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.7509,
-        "longitude": 4.909651,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT7S"
+        "latitude": 45.76389,
+        "longitude": 4.851536,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M7S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1326:LOC",
         "lineId": "ActIV:Line::43:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.90341,
-        "longitude": 4.844999,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3520:LOC",
-        "lineId": "ActIV:Line::12:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.67605,
-        "longitude": 4.766338,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT46S"
+        "latitude": 45.81339,
+        "longitude": 4.84434,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M14S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1520:LOC",
         "lineId": "ActIV:Line::C15:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.73686,
-        "longitude": 4.916772,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M57S"
+        "direction": "outbound",
+        "latitude": 45.73463,
+        "longitude": 4.872166,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT4M40S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3423:LOC",
         "lineId": "ActIV:Line::S6:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77449,
-        "longitude": 4.835851,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT7S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2401:LOC",
-        "lineId": "ActIV:Line::C17:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.72026,
-        "longitude": 4.923627,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT27S"
+        "latitude": 45.76328,
+        "longitude": 4.83295,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT8M30S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2433:LOC",
         "lineId": "ActIV:Line::33:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.82213,
-        "longitude": 4.87256,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT4M20S"
+        "latitude": 45.77447,
+        "longitude": 4.830782,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT10M39S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:1522:LOC",
+        "lineId": "ActIV:Line::C11:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.7515,
+        "longitude": 4.86114,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT24S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2809:LOC",
         "lineId": "ActIV:Line::TB11:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76208,
-        "longitude": 4.880543,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M30S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3026:LOC",
-        "lineId": "ActIV:Line::45:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76414,
-        "longitude": 4.788556,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT41S"
+        "latitude": 45.7638,
+        "longitude": 4.866797,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT51S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3039:LOC",
         "lineId": "ActIV:Line::C7:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.75927,
-        "longitude": 4.858488,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT0S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:6101:LOC",
-        "lineId": "ActIV:Line::C25:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.7193,
-        "longitude": 4.888705,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT9S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:2446:LOC",
-        "lineId": "ActIV:Line::31:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.78276,
-        "longitude": 4.810999,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT9S"
+        "direction": "outbound",
+        "latitude": 45.73267,
+        "longitude": 4.823811,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M28S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3030:LOC",
         "lineId": "ActIV:Line::19:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76768,
-        "longitude": 4.797614,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT52S"
+        "direction": "outbound",
+        "latitude": 45.76736,
+        "longitude": 4.82264,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M10S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2004:LOC",
         "lineId": "ActIV:Line::C1:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.77671,
-        "longitude": 4.844288,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT54S"
+        "direction": "outbound",
+        "latitude": 45.78472,
+        "longitude": 4.856966,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M5S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:868:LOC",
+        "lineId": "ActIV:Line::T2:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.71878,
+        "longitude": 4.925327,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT1M35S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2746:LOC",
         "lineId": "ActIV:Line::C7:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.71404,
-        "longitude": 4.807525,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT45S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:905:LOC",
-        "lineId": "ActIV:Line::T4:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76884,
-        "longitude": 4.861854,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT5S"
+        "latitude": 45.69762,
+        "longitude": 4.817668,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT50S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1302:LOC",
         "lineId": "ActIV:Line::C6:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.78635,
-        "longitude": 4.796018,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M58S"
+        "direction": "inbound",
+        "latitude": 45.78417,
+        "longitude": 4.805286,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT12S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3540:LOC",
         "lineId": "ActIV:Line::12:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.68054,
-        "longitude": 4.786196,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M27S"
+        "latitude": 45.72292,
+        "longitude": 4.77126,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M54S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:1613:LOC",
         "lineId": "ActIV:Line::C3:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76503,
-        "longitude": 4.908871,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT23S"
+        "latitude": 45.77465,
+        "longitude": 4.915303,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT22S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:906:LOC",
+        "lineId": "ActIV:Line::T4:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.73945,
+        "longitude": 4.859741,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT23S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3062:LOC",
         "lineId": "ActIV:Line::C26:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.75086,
-        "longitude": 4.892741,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT9S"
+        "latitude": 45.78039,
+        "longitude": 4.859778,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M27S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:1328:LOC",
-        "lineId": "ActIV:Line::C6:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2709:LOC",
+        "lineId": "ActIV:Line::17:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76264,
-        "longitude": 4.857652,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M56S"
+        "latitude": 45.69731,
+        "longitude": 4.830782,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT29S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:912:LOC",
-        "lineId": "ActIV:Line::T4:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:2274:LOC",
+        "lineId": "ActIV:Line::C5:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.80098,
+        "longitude": 4.878251,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT50S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:4701:LOC",
+        "lineId": "ActIV:Line::67:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.72978,
-        "longitude": 4.867334,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT20S"
+        "latitude": 45.76863,
+        "longitude": 5.030732,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M14S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:920:LOC",
         "lineId": "ActIV:Line::T2:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.73078,
-        "longitude": 4.917147,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT19S"
+        "latitude": 45.74832,
+        "longitude": 4.825748,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT9S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:4701:LOC",
-        "lineId": "ActIV:Line::67:SYTRAL",
+        "vehicleId": "ActIV:Vehicle:Bus:3028:LOC",
+        "lineId": "ActIV:Line::C14:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.77757,
-        "longitude": 4.993373,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT31S"
+        "latitude": 45.76321,
+        "longitude": 4.845087,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M17S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2735:LOC",
         "lineId": "ActIV:Line::C14:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76735,
-        "longitude": 4.8239,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT5M22S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1417:LOC",
-        "lineId": "ActIV:Line::C10:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.69841,
-        "longitude": 4.794724,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT59S"
+        "direction": "inbound",
+        "latitude": 45.79286,
+        "longitude": 4.782438,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4125:LOC",
         "lineId": "ActIV:Line::62:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.7057,
-        "longitude": 4.900691,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M19S"
+        "direction": "outbound",
+        "latitude": 45.71119,
+        "longitude": 4.912292,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT34S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3612:LOC",
         "lineId": "ActIV:Line::45:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.76417,
-        "longitude": 4.785651,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3S"
+        "direction": "inbound",
+        "latitude": 45.75943,
+        "longitude": 4.795804,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT42S"
     },
     {
-        "vehicleId": "ActIV:Vehicle:Bus:1214:LOC",
-        "lineId": "ActIV:Line::40:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.77328,
-        "longitude": 4.81254,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT55S"
+        "vehicleId": "ActIV:Vehicle:Bus:1509:LOC",
+        "lineId": "ActIV:Line::C3:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.76494,
+        "longitude": 4.908752,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT32S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2517:LOC",
         "lineId": "ActIV:Line::15:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.65946,
-        "longitude": 4.81672,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT51S"
+        "latitude": 45.72854,
+        "longitude": 4.816016,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M53S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:6105:LOC",
+        "lineId": "ActIV:Line::C25:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.71395,
+        "longitude": 4.897337,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT5M5S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2276:LOC",
         "lineId": "ActIV:Line::C2:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76288,
-        "longitude": 4.85765,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT3M43S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1526:LOC",
-        "lineId": "ActIV:Line::C11:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.75807,
-        "longitude": 4.884833,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M21S"
+        "latitude": 45.81381,
+        "longitude": 4.888357,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT2M21S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2711:LOC",
         "lineId": "ActIV:Line::78:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.60936,
-        "longitude": 4.789704,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT10M17S"
+        "latitude": 45.68767,
+        "longitude": 4.786795,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT11M23S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2250:LOC",
         "lineId": "ActIV:Line::C5:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.8118,
-        "longitude": 4.888599,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M7S"
+        "latitude": 45.74685,
+        "longitude": 4.84285,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT12S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2263:LOC",
         "lineId": "ActIV:Line::C2:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.8033,
-        "longitude": 4.860507,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT48S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1304:LOC",
-        "lineId": "ActIV:Line::C6:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.78159,
-        "longitude": 4.805157,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M4S"
+        "latitude": 45.81897,
+        "longitude": 4.905925,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT17S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2122:LOC",
         "lineId": "ActIV:Line::C12:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.7554,
-        "longitude": 4.842558,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT2M21S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3414:LOC",
-        "lineId": "ActIV:Line::71:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.79933,
-        "longitude": 4.819608,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M2S"
+        "latitude": 45.71962,
+        "longitude": 4.854435,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT8M55S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4202:LOC",
         "lineId": "ActIV:Line::67:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.76931,
-        "longitude": 4.946566,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M23S"
+        "direction": "outbound",
+        "latitude": 45.76445,
+        "longitude": 4.918387,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT42S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2410:LOC",
         "lineId": "ActIV:Line::49:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.7363,
-        "longitude": 4.795799,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
+        "latitude": 45.74965,
+        "longitude": 4.826122,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M42S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:3414:LOC",
+        "lineId": "ActIV:Line::71:SYTRAL",
+        "direction": "outbound",
+        "latitude": 45.78083,
+        "longitude": 4.805303,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
         "delay": "PT0S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:865:LOC",
         "lineId": "ActIV:Line::T1:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.78632,
-        "longitude": 4.88218,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT3M"
+        "latitude": 45.75505,
+        "longitude": 4.842499,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "-PT1S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2013:LOC",
         "lineId": "ActIV:Line::C1:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.77216,
-        "longitude": 4.854474,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT10S"
+        "direction": "inbound",
+        "latitude": 45.78832,
+        "longitude": 4.839722,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT1M34S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:3051:LOC",
         "lineId": "ActIV:Line::C26:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7427,
-        "longitude": 4.87948,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:1022:LOC",
-        "lineId": "ActIV:Line::98:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.76351,
-        "longitude": 4.766446,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M42S"
+        "latitude": 45.75416,
+        "longitude": 4.89139,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT42S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:829:LOC",
         "lineId": "ActIV:Line::T1:SYTRAL",
         "direction": "outbound",
-        "latitude": 45.73182,
-        "longitude": 4.822949,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M34S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:3335:LOC",
-        "lineId": "ActIV:Line::22:SYTRAL",
-        "direction": "inbound",
-        "latitude": 45.78212,
-        "longitude": 4.805889,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "-PT1M22S"
+        "latitude": 45.76376,
+        "longitude": 4.861507,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M8S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:4106:LOC",
         "lineId": "ActIV:Line::62:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.66921,
-        "longitude": 4.95094,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT1M7S"
-    },
-    {
-        "vehicleId": "ActIV:Vehicle:Bus:914:LOC",
-        "lineId": "ActIV:Line::T7:SYTRAL",
         "direction": "inbound",
-        "latitude": 45.7775,
-        "longitude": 4.969474,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT32S"
+        "latitude": 45.6802,
+        "longitude": 4.948983,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT50S"
     },
     {
         "vehicleId": "ActIV:Vehicle:Bus:2521:LOC",
         "lineId": "ActIV:Line::63:SYTRAL",
-        "direction": "outbound",
-        "latitude": 45.7161,
-        "longitude": 4.79649,
-        "timestamp": "2025-12-28T20:21:39.084815Z",
-        "delay": "PT6S"
+        "direction": "inbound",
+        "latitude": 45.73902,
+        "longitude": 4.819946,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT3M40S"
+    },
+    {
+        "vehicleId": "ActIV:Vehicle:Bus:901:LOC",
+        "lineId": "ActIV:Line::T3:SYTRAL",
+        "direction": "inbound",
+        "latitude": 45.75305,
+        "longitude": 4.86809,
+        "timestamp": "2025-12-28T20:49:17.480329400Z",
+        "delay": "PT5S"
     }
 ]
