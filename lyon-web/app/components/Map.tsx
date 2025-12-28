@@ -102,7 +102,30 @@ export default function Map() {
 
                   <span className="font-semibold">Delay:</span>
                   <span className={`${v.delay.startsWith('-') ? 'text-green-600' : 'text-red-600'}`}>
-                    {v.delay}
+                    {(() => {
+                      const d = v.delay;
+                      const isEarly = d.startsWith('-');
+                      const raw = isEarly ? d.substring(1) : d;
+
+                      // Parse PT#M#S
+                      let minutes = 0;
+                      let seconds = 0;
+
+                      const mMatch = raw.match(/(\d+)M/);
+                      if (mMatch) minutes = parseInt(mMatch[1], 10);
+
+                      const sMatch = raw.match(/(\d+)S/);
+                      if (sMatch) seconds = parseInt(sMatch[1], 10);
+
+                      if (minutes === 0 && seconds === 0) return 'On Time';
+
+                      const parts = [];
+                      if (minutes > 0) parts.push(`${minutes} min`);
+                      if (seconds > 0) parts.push(`${seconds} s`);
+
+                      const text = parts.join(' ');
+                      return isEarly ? `Early by ${text}` : `Late by ${text}`;
+                    })()}
                   </span>
                 </div>
 
