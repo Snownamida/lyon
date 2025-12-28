@@ -30,7 +30,8 @@ export default function Map() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/vehicles');
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+        const response = await fetch(apiUrl + '/api/vehicles');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
