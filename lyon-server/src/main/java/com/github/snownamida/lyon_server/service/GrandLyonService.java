@@ -29,14 +29,42 @@ public class GrandLyonService {
                 .build();
     }
 
+    private final java.util.concurrent.atomic.AtomicLong lastRequestTime = new java.util.concurrent.atomic.AtomicLong(
+            0);
+    private volatile List<VehiclePosition> cachedPositions = Collections.emptyList();
+    private volatile long lastFetchTime = 0;
+
+    // Cache valid for 3 seconds as requested
+    private static final long CACHE_DURATION_MS = 3000;
+    // User considered "active" if request received naturally within reasonable
+    // timeframe (e.g. 10s)
+    private static final long ACTIVE_USER_TIMEOUT_MS = 10000;
+
     public List<VehiclePosition> getVehiclePositions() {
+        long now = System.currentTimeMillis();
+        lastRequestTime.set(now); // Mark user activity
+
+        synchronized (this) {
+            // If cache is fresh (fetched less than 3s ago), return it
+            if (now - lastFetchTime < CACHE_DURATION_MS) {
+                return cachedPositions;
+            }
+
+            // Otherwise, fetch new data
+            fetchDataFromApi();
+            return cachedPositions;
+        }
+    }
+
+    private void fetchDataFromApi() {
         try {
             SiriResponse response = restTemplate.getForObject(apiUrl, SiriResponse.class);
 
             if (response == null || response.getSiri() == null ||
                     response.getSiri().getServiceDelivery() == null ||
                     response.getSiri().getServiceDelivery().getVehicleMonitoringDelivery() == null) {
-                return Collections.emptyList();
+                this.cachedPositions = Collections.emptyList();
+                return;
             }
 
             List<VehiclePosition> allPositions = response.getSiri().getServiceDelivery().getVehicleMonitoringDelivery()
@@ -56,28 +84,19 @@ public class GrandLyonService {
                 if (positions.size() == 1) {
                     result.add(positions.get(0));
                 } else if (positions.size() == 2) {
-                    // Check if one is inbound and one is outbound? Or just pick one?
-                    // User requested: "Only handle 'same vehicleId, both inbound and outbound'
-                    // case"
-                    // Since we don't have RecordedAtTime easily available in VehiclePosition to
-                    // sort,
-                    // and user said "inbound and outbound", we strictly check distinct directions
-                    // if needed,
-                    // or just take the first one as a simple merge for this specific 2-case.
-                    // However, user said "if more than 2, let it error".
-                    // For size=2, we merge.
                     result.add(positions.get(0));
                 } else {
-                    // More than 2: include all to trigger frontend error as requested
                     result.addAll(positions);
                 }
             }
 
-            return result;
+            this.cachedPositions = result;
+            this.lastFetchTime = System.currentTimeMillis();
 
         } catch (Exception e) {
             e.printStackTrace();
-            return Collections.emptyList();
+            // Keep old cache on error or empty? Let's return empty to be safe
+            this.cachedPositions = Collections.emptyList();
         }
     }
 
