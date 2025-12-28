@@ -64,19 +64,23 @@ export default function Map() {
         let shape = 'border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);';
 
         if (/^T\d+$/.test(lineCode)) {
-          type = 'TRAM';
-          bgColor = '#9333ea'; // Purple for Tram
+          type = 'Tramway';
+          bgColor = '#864098'; // Purple for Tram
         } else if (/^C\d+$/.test(lineCode)) {
-          type = 'CHRONO';
-          bgColor = '#eab308'; // Yellow/Gold for Chrono
+          type = 'Bus chrono';
+          bgColor = '#697a84'; // Yellow/Gold for Chrono
           // Chrono often square-ish or distinct
           shape += 'border-radius: 8px;';
         } else if (/^\d+$/.test(lineCode)) {
-          type = 'BUS';
-          bgColor = '#ef4444'; // Red for Bus
+          type = 'Bus standard';
+          bgColor = '#ea2e2e'; // Red for Bus
         } else if (/^TB\d+$/.test(lineCode)) {
-          type = 'TRAMBUS';
-          bgColor = '#14b8a6'; // Teal for Trambus
+          type = 'Trambus';
+          bgColor = '#fdc210'; // Teal for Trambus
+        } else if (lineCode === 'RX') {
+          type = 'Rhônexpress';
+          bgColor = '#c9151d'; // Orange for Rhônexpress
+          shape += 'border-radius: 4px;'; // Distinct shape for airport shuttle
         } else {
           // Keep default gray for unknown
         }
