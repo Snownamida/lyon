@@ -105,9 +105,10 @@ export default function Map() {
                   <span>{v.direction}</span>
 
                   <span className="font-semibold">Delay:</span>
-                  <span className={`${v.delay.startsWith('-') ? 'text-green-600' : 'text-red-600'}`}>
+                  <span className={`${v.delay && v.delay.startsWith('-') ? 'text-green-600' : 'text-red-600'}`}>
                     {(() => {
                       const d = v.delay;
+                      if (!d) return 'N/A'; // Handle missing delay
                       const isEarly = d.startsWith('-');
                       const raw = isEarly ? d.substring(1) : d;
 
