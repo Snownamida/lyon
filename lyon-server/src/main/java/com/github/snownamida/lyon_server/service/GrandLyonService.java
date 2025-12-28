@@ -36,9 +36,6 @@ public class GrandLyonService {
 
     // Cache valid for 3 seconds as requested
     private static final long CACHE_DURATION_MS = 3000;
-    // User considered "active" if request received naturally within reasonable
-    // timeframe (e.g. 10s)
-    private static final long ACTIVE_USER_TIMEOUT_MS = 10000;
 
     public List<VehiclePosition> getVehiclePositions() {
         long now = System.currentTimeMillis();
@@ -73,20 +70,37 @@ public class GrandLyonService {
                     .map(activity -> mapToVehiclePosition(activity.getMonitoredVehicleJourney()))
                     .collect(Collectors.toList());
 
-            // Deduplicate only if exactly 2 entries exist for the same vehicle
+            // Robust deduplication logic for any number of duplicates
             java.util.Map<String, List<VehiclePosition>> grouped = allPositions.stream()
+                    .filter(p -> p.getVehicleId() != null)
                     .collect(Collectors.groupingBy(VehiclePosition::getVehicleId));
 
             List<VehiclePosition> result = new java.util.ArrayList<>();
 
-            for (java.util.Map.Entry<String, List<VehiclePosition>> entry : grouped.entrySet()) {
-                List<VehiclePosition> positions = entry.getValue();
+            for (List<VehiclePosition> positions : grouped.values()) {
+                if (positions.isEmpty())
+                    continue;
                 if (positions.size() == 1) {
                     result.add(positions.get(0));
-                } else if (positions.size() == 2) {
-                    result.add(positions.get(0));
                 } else {
-                    result.addAll(positions);
+                    // Pick the best candidate
+                    // Priority 1: Has a valid delay (not null)
+                    // Priority 2: Smallest absolute delay (real-time vs scheduled phantom)
+                    VehiclePosition best = positions.stream()
+                            .min(java.util.Comparator
+                                    .comparingInt((VehiclePosition p) -> p.getDelay() != null ? 0 : 1) // Null delays
+                                                                                                       // last
+                                    .thenComparingLong(p -> {
+                                        if (p.getDelay() == null)
+                                            return Long.MAX_VALUE;
+                                        try {
+                                            return Math.abs(java.time.Duration.parse(p.getDelay()).getSeconds());
+                                        } catch (Exception e) {
+                                            return Long.MAX_VALUE;
+                                        }
+                                    }))
+                            .orElse(positions.get(0));
+                    result.add(best);
                 }
             }
 
