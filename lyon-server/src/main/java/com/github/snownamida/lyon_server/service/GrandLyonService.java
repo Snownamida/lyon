@@ -67,7 +67,7 @@ public class GrandLyonService {
             List<VehiclePosition> allPositions = response.getSiri().getServiceDelivery().getVehicleMonitoringDelivery()
                     .stream()
                     .flatMap(delivery -> delivery.getVehicleActivity().stream())
-                    .map(activity -> mapToVehiclePosition(activity.getMonitoredVehicleJourney()))
+                    .map(this::mapToVehiclePosition)
                     .collect(Collectors.toList());
 
             // Robust deduplication logic for any number of duplicates
@@ -114,9 +114,11 @@ public class GrandLyonService {
         }
     }
 
-    private VehiclePosition mapToVehiclePosition(SiriResponse.MonitoredVehicleJourney journey) {
-        if (journey == null)
+    private VehiclePosition mapToVehiclePosition(SiriResponse.VehicleActivity activity) {
+        if (activity == null || activity.getMonitoredVehicleJourney() == null)
             return null;
+
+        SiriResponse.MonitoredVehicleJourney journey = activity.getMonitoredVehicleJourney();
 
         String vehicleId = journey.getVehicleRef() != null ? journey.getVehicleRef().getValue() : null;
         String lineId = journey.getLineRef() != null ? journey.getLineRef().getValue() : null;
@@ -125,6 +127,31 @@ public class GrandLyonService {
         double lon = journey.getVehicleLocation() != null ? journey.getVehicleLocation().getLongitude() : 0.0;
         String delay = journey.getDelay();
 
-        return new VehiclePosition(vehicleId, lineId, direction, lat, lon, Instant.now(), delay);
+        // New fields extraction
+        // activity level
+        Instant recordedAt = null;
+        if (activity.getRecordedAtTime() != null) {
+            try {
+                recordedAt = Instant.parse(activity.getRecordedAtTime());
+            } catch (Exception ignored) {
+            }
+        }
+
+        Instant validUntil = null;
+        if (activity.getValidUntilTime() != null) {
+            try {
+                validUntil = Instant.parse(activity.getValidUntilTime());
+            } catch (Exception ignored) {
+            }
+        }
+
+        // journey level
+        String destination = journey.getDestinationRef() != null ? journey.getDestinationRef().getValue() : null;
+        String dataSource = journey.getDataSource();
+        Double bearing = journey.getBearing();
+        String status = journey.getVehicleStatus();
+
+        return new VehiclePosition(vehicleId, lineId, direction, lat, lon, delay, recordedAt, validUntil, destination,
+                dataSource, bearing, status);
     }
 }

@@ -42,8 +42,22 @@ public class SiriResponse {
         @JsonProperty("MonitoredVehicleJourney")
         private MonitoredVehicleJourney monitoredVehicleJourney;
 
+        @JsonProperty("RecordedAtTime")
+        private String recordedAtTime;
+
+        @JsonProperty("ValidUntilTime")
+        private String validUntilTime;
+
         public MonitoredVehicleJourney getMonitoredVehicleJourney() {
             return monitoredVehicleJourney;
+        }
+
+        public String getRecordedAtTime() {
+            return recordedAtTime;
+        }
+
+        public String getValidUntilTime() {
+            return validUntilTime;
         }
     }
 
@@ -59,6 +73,18 @@ public class SiriResponse {
 
         @JsonProperty("VehicleRef")
         private ValueRef vehicleRef;
+
+        @JsonProperty("DestinationRef")
+        private ValueRef destinationRef;
+
+        @JsonProperty("DataSource")
+        private String dataSource;
+
+        @JsonProperty("Bearing")
+        private Double bearing;
+
+        @JsonProperty("VehicleStatus")
+        private String vehicleStatus;
 
         @JsonProperty("Delay")
         private String delay;
@@ -77,6 +103,22 @@ public class SiriResponse {
 
         public ValueRef getVehicleRef() {
             return vehicleRef;
+        }
+
+        public ValueRef getDestinationRef() {
+            return destinationRef;
+        }
+
+        public String getDataSource() {
+            return dataSource;
+        }
+
+        public Double getBearing() {
+            return bearing;
+        }
+
+        public String getVehicleStatus() {
+            return vehicleStatus;
         }
 
         public String getDelay() {
