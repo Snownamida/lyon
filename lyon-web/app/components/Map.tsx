@@ -41,18 +41,31 @@ const REFRESH_INTERVAL = 3000; // 3 seconds
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isWakingUp, setIsWakingUp] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
+    // If it's the very first fetch, start a wake-up timer
+    let wakeTimer: NodeJS.Timeout | null = null;
+    if (!data) {
+      wakeTimer = setTimeout(() => setIsWakingUp(true), 3000);
+    }
+
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
       const response = await fetch(apiUrl + '/api/vehicles');
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Server responded with ${response.status}`);
       }
       const jsonData = await response.json();
       setData(jsonData);
-    } catch (error) {
-      console.error("Error fetching vehicles:", error);
+      setError(null);
+      setIsWakingUp(false);
+    } catch (err: any) {
+      console.error("Error fetching vehicles:", err);
+      setError(err.message || 'Connection failed');
+    } finally {
+      if (wakeTimer) clearTimeout(wakeTimer);
     }
   };
 
@@ -107,7 +120,44 @@ export default function Map() {
   });
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+      {/* Initial Loading / Wake up Overlay */}
+      {!data && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 2000,
+          background: 'rgba(255,255,255,0.9)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'system-ui, sans-serif'
+        }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            border: '3px solid #edf2f7',
+            borderTopColor: '#4299e1',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            marginBottom: '20px'
+          }}></div>
+          <h2 style={{ margin: '0 0 8px 0', color: '#2d3748' }}>
+            {error ? 'Connection Issue' : (isWakingUp ? 'Waking up Server...' : 'Connecting to Lyon...')}
+          </h2>
+          <p style={{ margin: 0, color: '#718096', fontSize: '14px', textAlign: 'center', padding: '0 20px' }}>
+            {error ? error : (isWakingUp ? 'The free-tier server is spinning up. This usually takes 30-50s.' : 'Fetching real-time traffic data...')}
+          </p>
+          {error && (
+            <button onClick={() => fetchData()} style={{ marginTop: '20px', padding: '8px 24px', background: '#4299e1', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+              Retry Now
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Dashboard Overlay */}
       <div style={{
         position: 'absolute',
@@ -208,6 +258,9 @@ export default function Map() {
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
       `}</style>
 
