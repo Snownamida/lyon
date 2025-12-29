@@ -10,6 +10,7 @@ public record SiriResponse(
     }
 
     public record ServiceDelivery(
+            @JsonProperty("ResponseTimestamp") String responseTimestamp,
             @JsonProperty("VehicleMonitoringDelivery") List<VehicleMonitoringDelivery> vehicleMonitoringDelivery) {
     }
 

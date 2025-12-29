@@ -2,6 +2,7 @@ package com.github.snownamida.lyon_server.service;
 
 import com.github.snownamida.lyon_server.model.SiriResponse;
 import com.github.snownamida.lyon_server.model.VehiclePosition;
+import com.github.snownamida.lyon_server.model.VehicleData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
@@ -33,23 +34,24 @@ public class GrandLyonService {
             0);
     private volatile List<VehiclePosition> cachedPositions = Collections.emptyList();
     private volatile long lastFetchTime = 0;
+    private volatile Instant lastApiTimestamp = null;
 
     // Cache valid for 3 seconds as requested
     private static final long CACHE_DURATION_MS = 3000;
 
-    public List<VehiclePosition> getVehiclePositions() {
+    public VehicleData getVehiclePositions() {
         long now = System.currentTimeMillis();
         lastRequestTime.set(now); // Mark user activity
 
         synchronized (this) {
             // If cache is fresh (fetched less than 3s ago), return it
             if (now - lastFetchTime < CACHE_DURATION_MS) {
-                return cachedPositions;
+                return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime));
             }
 
             // Otherwise, fetch new data
             fetchDataFromApi();
-            return cachedPositions;
+            return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime));
         }
     }
 
@@ -62,6 +64,12 @@ public class GrandLyonService {
                     response.siri().serviceDelivery().vehicleMonitoringDelivery() == null) {
                 this.cachedPositions = Collections.emptyList();
                 return;
+            }
+
+            // Extract API timestamp
+            try {
+                this.lastApiTimestamp = Instant.parse(response.siri().serviceDelivery().responseTimestamp());
+            } catch (Exception ignored) {
             }
 
             List<VehiclePosition> allPositions = response.siri().serviceDelivery().vehicleMonitoringDelivery()
