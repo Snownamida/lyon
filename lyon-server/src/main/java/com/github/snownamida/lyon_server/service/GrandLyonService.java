@@ -57,23 +57,23 @@ public class GrandLyonService {
         try {
             SiriResponse response = restTemplate.getForObject(apiUrl, SiriResponse.class);
 
-            if (response == null || response.getSiri() == null ||
-                    response.getSiri().getServiceDelivery() == null ||
-                    response.getSiri().getServiceDelivery().getVehicleMonitoringDelivery() == null) {
+            if (response == null || response.siri() == null ||
+                    response.siri().serviceDelivery() == null ||
+                    response.siri().serviceDelivery().vehicleMonitoringDelivery() == null) {
                 this.cachedPositions = Collections.emptyList();
                 return;
             }
 
-            List<VehiclePosition> allPositions = response.getSiri().getServiceDelivery().getVehicleMonitoringDelivery()
+            List<VehiclePosition> allPositions = response.siri().serviceDelivery().vehicleMonitoringDelivery()
                     .stream()
-                    .flatMap(delivery -> delivery.getVehicleActivity().stream())
+                    .flatMap(delivery -> delivery.vehicleActivity().stream())
                     .map(this::mapToVehiclePosition)
                     .collect(Collectors.toList());
 
             // Robust deduplication logic for any number of duplicates
             java.util.Map<String, List<VehiclePosition>> grouped = allPositions.stream()
-                    .filter(p -> p.getVehicleId() != null)
-                    .collect(Collectors.groupingBy(VehiclePosition::getVehicleId));
+                    .filter(p -> p.vehicleId() != null)
+                    .collect(Collectors.groupingBy(VehiclePosition::vehicleId));
 
             List<VehiclePosition> result = new java.util.ArrayList<>();
 
@@ -88,13 +88,13 @@ public class GrandLyonService {
                     // Priority 2: Smallest absolute delay (real-time vs scheduled phantom)
                     VehiclePosition best = positions.stream()
                             .min(java.util.Comparator
-                                    .comparingInt((VehiclePosition p) -> p.getDelay() != null ? 0 : 1) // Null delays
-                                                                                                       // last
+                                    .comparingInt((VehiclePosition p) -> p.delay() != null ? 0 : 1) // Null delays
+                                                                                                    // last
                                     .thenComparingLong(p -> {
-                                        if (p.getDelay() == null)
+                                        if (p.delay() == null)
                                             return Long.MAX_VALUE;
                                         try {
-                                            return Math.abs(java.time.Duration.parse(p.getDelay()).getSeconds());
+                                            return Math.abs(java.time.Duration.parse(p.delay()).getSeconds());
                                         } catch (Exception e) {
                                             return Long.MAX_VALUE;
                                         }
@@ -115,41 +115,41 @@ public class GrandLyonService {
     }
 
     private VehiclePosition mapToVehiclePosition(SiriResponse.VehicleActivity activity) {
-        if (activity == null || activity.getMonitoredVehicleJourney() == null)
+        if (activity == null || activity.monitoredVehicleJourney() == null)
             return null;
 
-        SiriResponse.MonitoredVehicleJourney journey = activity.getMonitoredVehicleJourney();
+        SiriResponse.MonitoredVehicleJourney journey = activity.monitoredVehicleJourney();
 
-        String vehicleId = journey.getVehicleRef() != null ? journey.getVehicleRef().getValue() : null;
-        String lineId = journey.getLineRef() != null ? journey.getLineRef().getValue() : null;
-        String direction = journey.getDirectionRef() != null ? journey.getDirectionRef().getValue() : null;
-        double lat = journey.getVehicleLocation() != null ? journey.getVehicleLocation().getLatitude() : 0.0;
-        double lon = journey.getVehicleLocation() != null ? journey.getVehicleLocation().getLongitude() : 0.0;
-        String delay = journey.getDelay();
+        String vehicleId = journey.vehicleRef() != null ? journey.vehicleRef().value() : null;
+        String lineId = journey.lineRef() != null ? journey.lineRef().value() : null;
+        String direction = journey.directionRef() != null ? journey.directionRef().value() : null;
+        double lat = journey.vehicleLocation() != null ? journey.vehicleLocation().latitude() : 0.0;
+        double lon = journey.vehicleLocation() != null ? journey.vehicleLocation().longitude() : 0.0;
+        String delay = journey.delay();
 
         // New fields extraction
         // activity level
         Instant recordedAt = null;
-        if (activity.getRecordedAtTime() != null) {
+        if (activity.recordedAtTime() != null) {
             try {
-                recordedAt = Instant.parse(activity.getRecordedAtTime());
+                recordedAt = Instant.parse(activity.recordedAtTime());
             } catch (Exception ignored) {
             }
         }
 
         Instant validUntil = null;
-        if (activity.getValidUntilTime() != null) {
+        if (activity.validUntilTime() != null) {
             try {
-                validUntil = Instant.parse(activity.getValidUntilTime());
+                validUntil = Instant.parse(activity.validUntilTime());
             } catch (Exception ignored) {
             }
         }
 
         // journey level
-        String destination = journey.getDestinationRef() != null ? journey.getDestinationRef().getValue() : null;
-        String dataSource = journey.getDataSource();
-        Double bearing = journey.getBearing();
-        String status = journey.getVehicleStatus();
+        String destination = journey.destinationRef() != null ? journey.destinationRef().value() : null;
+        String dataSource = journey.dataSource();
+        Double bearing = journey.bearing();
+        String status = journey.vehicleStatus();
 
         return new VehiclePosition(vehicleId, lineId, direction, lat, lon, delay, recordedAt, validUntil, destination,
                 dataSource, bearing, status);
