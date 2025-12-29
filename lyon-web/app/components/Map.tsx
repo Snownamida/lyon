@@ -40,6 +40,7 @@ const REFRESH_INTERVAL = 3000; // 3 seconds
 
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -56,6 +57,11 @@ export default function Map() {
   };
 
   useEffect(() => {
+    // Detect mobile on mount
+    if (window.innerWidth < 768) {
+      setIsCollapsed(true);
+    }
+
     fetchData(); // Initial fetch
 
     // Actual Data Refresh
@@ -109,43 +115,101 @@ export default function Map() {
         left: '20px',
         zIndex: 1000,
         background: 'rgba(255, 255, 255, 0.85)',
-        backdropFilter: 'blur(8px)',
-        padding: '20px',
-        borderRadius: '16px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-        width: '280px',
-        fontFamily: 'system-ui, -apple-system, sans-serif'
-      }}>
-        <h1 style={{ margin: '0 0 4px 0', fontSize: '18px', fontWeight: '800', color: '#333' }}>Lyon Live Traffic</h1>
-        <div style={{ fontSize: '12px', color: '#666', marginBottom: '16px' }}>
-          Server Time: {data?.apiResponseTimestamp ? new Date(data.apiResponseTimestamp).toLocaleTimeString() : '---'}
+        backdropFilter: 'blur(10px)',
+        padding: isCollapsed ? '12px 16px' : '20px',
+        borderRadius: '20px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        width: isCollapsed ? 'auto' : '300px',
+        maxWidth: 'calc(100vw - 40px)',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        cursor: isCollapsed ? 'pointer' : 'default',
+        userSelect: 'none'
+      }} onClick={() => isCollapsed && setIsCollapsed(false)}>
+
+        {/* Header with Toggle */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: isCollapsed ? '0' : '16px'
+        }}>
+          <h1 style={{
+            margin: 0,
+            fontSize: isCollapsed ? '14px' : '18px',
+            fontWeight: '800',
+            color: '#1a202c',
+            whiteSpace: 'nowrap'
+          }}>
+            {isCollapsed ? '📊 Stats' : 'Lyon Live Traffic'}
+          </h1>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsCollapsed(!isCollapsed);
+            }}
+            style={{
+              background: '#edf2f7',
+              border: 'none',
+              borderRadius: '50%',
+              width: '28px',
+              height: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              marginLeft: '12px',
+              color: '#4a5568',
+              transition: 'transform 0.3s ease'
+            }}
+          >
+            <span style={{
+              transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)',
+              fontSize: '14px',
+              display: 'inline-block'
+            }}>▼</span>
+          </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
-          <div style={{ background: '#f0f4f8', padding: '10px', borderRadius: '12px', textAlign: 'center' }}>
-            <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#718096', textTransform: 'uppercase' }}>Total</div>
-            <div style={{ fontSize: '20px', fontWeight: '800', color: '#2d3748' }}>{stats.total}</div>
-          </div>
-          <div style={{ background: '#fffaf0', padding: '10px', borderRadius: '12px', textAlign: 'center' }}>
-            <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#b7791f', textTransform: 'uppercase' }}>On Time</div>
-            <div style={{ fontSize: '20px', fontWeight: '800', color: '#744210' }}>{stats.onTime}</div>
-          </div>
-        </div>
-
-        <div>
-          {Object.entries(stats.counts).map(([type, count]) => (
-            <div key={type} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', padding: '4px 0', borderBottom: '1px solid #edf2f7' }}>
-              <span style={{ color: '#4a5568' }}>{type}</span>
-              <span style={{ fontWeight: 'bold', color: '#2d3748' }}>{count}</span>
+        {!isCollapsed && (
+          <div style={{ animation: 'fadeIn 0.3s ease' }}>
+            <div style={{ fontSize: '12px', color: '#718096', marginBottom: '16px' }}>
+              Server Time: {data?.apiResponseTimestamp ? new Date(data.apiResponseTimestamp).toLocaleTimeString() : '---'}
             </div>
-          ))}
-        </div>
 
-        {/* Interesting Insight */}
-        <div style={{ marginTop: '16px', padding: '10px', background: '#f7fafc', borderRadius: '10px', fontSize: '12px', color: '#4a5568', fontStyle: 'italic' }}>
-          💡 {stats.late > stats.early ? `Currently ${stats.late} vehicles are late.` : `A good day! ${stats.early} vehicles are ahead of schedule.`}
-        </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '16px' }}>
+              <div style={{ background: '#ebf8ff', padding: '12px', borderRadius: '14px', textAlign: 'center', border: '1px solid #bee3f8' }}>
+                <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#2b6cb0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total</div>
+                <div style={{ fontSize: '22px', fontWeight: '800', color: '#2c5282' }}>{stats.total}</div>
+              </div>
+              <div style={{ background: '#fffaf0', padding: '12px', borderRadius: '14px', textAlign: 'center', border: '1px solid #feebc8' }}>
+                <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#b7791f', textTransform: 'uppercase', letterSpacing: '0.05em' }}>On Time</div>
+                <div style={{ fontSize: '22px', fontWeight: '800', color: '#744210' }}>{stats.onTime}</div>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              {Object.entries(stats.counts).map(([type, count]) => (
+                <div key={type} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', padding: '6px 0', borderBottom: '1px solid #edf2f7' }}>
+                  <span style={{ color: '#4a5568' }}>{type}</span>
+                  <span style={{ fontWeight: 'bold', color: '#1a202c' }}>{count}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ padding: '12px', background: '#f7fafc', borderRadius: '12px', fontSize: '12px', color: '#4a5568', fontStyle: 'italic', border: '1px solid #edf2f7' }}>
+              💡 {stats.late > stats.early ? `Currently ${stats.late} vehicles are late.` : `Efficiency is high: ${stats.early} vehicles are ahead of schedule.`}
+            </div>
+          </div>
+        )}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
       <MapContainer center={[45.7578137, 4.8320114]} zoom={13} style={{ height: '100vh', width: '100%' }}>
         <TileLayer
