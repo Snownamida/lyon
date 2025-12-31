@@ -1,6 +1,5 @@
 package com.github.snownamida.lyon_server.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,28 +25,35 @@ public class TransportLineService {
         this.restTemplate = new RestTemplate();
     }
 
-    @PostConstruct
-    public void init() {
-        fetchAllLines();
-    }
+    // Removed PostConstruct to avoid OOM on startup for large files
 
-    private void fetchAllLines() {
-        for (Map.Entry<String, String> entry : lineUrls.entrySet()) {
-            String type = entry.getKey();
-            String url = entry.getValue();
-            try {
-                System.out.println("Fetching " + type + " data from Grand Lyon: " + url);
-                String data = restTemplate.getForObject(URI.create(url), String.class);
-                cachedLineData.put(type, data);
-                System.out.println(type + " data cached successfully.");
-            } catch (Exception e) {
-                System.err.println("Failed to fetch " + type + " data: " + e.getMessage());
-                cachedLineData.put(type, "{\"type\":\"FeatureCollection\",\"features\":[]}");
-            }
+    private synchronized String fetchLineData(String type) {
+        // Double-check if it was fetched while waiting for lock
+        if (cachedLineData.containsKey(type)) {
+            return cachedLineData.get(type);
+        }
+
+        String url = lineUrls.get(type);
+        if (url == null) return "{\"type\":\"FeatureCollection\",\"features\":[]}";
+
+            
+        try {
+            System.out.println("Fetching " + type + " data from Grand Lyon: " + url);
+            String data = restTemplate.getForObject(URI.create(url), String.class);
+            cachedLineData.put(type, data);
+            System.out.println(type + " data cached successfully.");
+            return data;
+        } catch (Exception e) {
+            System.err.println("Failed to fetch " + type + " data: " + e.getMessage());
+            return "{\"type\":\"FeatureCollection\",\"features\":[]}";
         }
     }
 
     public String getCachedLineData(String type) {
-        return cachedLineData.getOrDefault(type, "{\"type\":\"FeatureCollection\",\"features\":[]}");
+        String data = cachedLineData.get(type);
+        if (data == null) {
+            return fetchLineData(type);
+        }
+        return data;
     }
 }

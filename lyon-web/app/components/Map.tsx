@@ -61,6 +61,7 @@ const getVehicleConfig = (lineCode: string): VehicleConfig => {
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [transportLines, setTransportLines] = useState<Record<string, any>>({});
+  const [lineLoading, setLineLoading] = useState<Record<string, boolean>>({});
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>({
     metro: true,
     tram: true,
@@ -96,6 +97,9 @@ export default function Map() {
   };
 
   const fetchTransportLines = async (type: string) => {
+    if (transportLines[type] || lineLoading[type]) return;
+
+    setLineLoading(prev => ({ ...prev, [type]: true }));
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
       const response = await fetch(`${apiUrl}/api/lines/${type}`);
@@ -105,6 +109,8 @@ export default function Map() {
       }
     } catch (err) {
       console.error(`Error fetching ${type} lines:`, err);
+    } finally {
+      setLineLoading(prev => ({ ...prev, [type]: false }));
     }
   };
 
@@ -115,9 +121,9 @@ export default function Map() {
     }
 
     fetchData(); // Initial fetch
+    // Pre-fetch only the small ones or defaults
     fetchTransportLines('metro');
     fetchTransportLines('tram');
-    fetchTransportLines('bus');
 
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
@@ -165,7 +171,7 @@ export default function Map() {
     }
     return {
       color: color,
-      weight: 4,
+      weight: 3, // slightly thinner for bus congestion
       opacity: 0.7
     };
   };
@@ -285,20 +291,27 @@ export default function Map() {
                 {Object.keys(visibleLayers).map(type => (
                   <button
                     key={type}
-                    onClick={() => setVisibleLayers(prev => ({ ...prev, [type]: !prev[type] }))}
+                    onClick={() => {
+                      if (!visibleLayers[type] && !transportLines[type]) {
+                        fetchTransportLines(type);
+                      }
+                      setVisibleLayers(prev => ({ ...prev, [type]: !prev[type] }));
+                    }}
+                    disabled={lineLoading[type]}
                     style={{
                       padding: '6px 12px',
                       borderRadius: '8px',
                       border: 'none',
                       fontSize: '12px',
                       fontWeight: '600',
-                      cursor: 'pointer',
+                      cursor: lineLoading[type] ? 'wait' : 'pointer',
                       background: visibleLayers[type] ? '#4299e1' : '#edf2f7',
                       color: visibleLayers[type] ? 'white' : '#4a5568',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.2s ease',
+                      opacity: lineLoading[type] ? 0.7 : 1
                     }}
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                    {lineLoading[type] ? '⌛ Loading...' : (type.charAt(0).toUpperCase() + type.slice(1))}
                   </button>
                 ))}
               </div>
