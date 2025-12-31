@@ -60,7 +60,7 @@ const getVehicleConfig = (lineCode: string): VehicleConfig => {
 
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
-  const [metroData, setMetroData] = useState<any>(null);
+  const [transportLines, setTransportLines] = useState<Record<string, any>>({});
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isWakingUp, setIsWakingUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,16 +90,16 @@ export default function Map() {
     }
   };
 
-  const fetchMetroData = async () => {
+  const fetchTransportLines = async (type: string) => {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-      const response = await fetch(apiUrl + '/api/metro-lines');
+      const response = await fetch(`${apiUrl}/api/lines/${type}`);
       if (response.ok) {
         const jsonData = await response.json();
-        setMetroData(jsonData);
+        setTransportLines(prev => ({ ...prev, [type]: jsonData }));
       }
     } catch (err) {
-      console.error("Error fetching metro lines:", err);
+      console.error(`Error fetching ${type} lines:`, err);
     }
   };
 
@@ -110,7 +110,8 @@ export default function Map() {
     }
 
     fetchData(); // Initial fetch
-    fetchMetroData(); // Fetch metro lines once
+    fetchTransportLines('metro');
+    fetchTransportLines('tram');
 
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
@@ -147,7 +148,7 @@ export default function Map() {
     early: 0
   });
 
-  const metroStyle = (feature: any) => {
+  const lineStyle = (feature: any) => {
     let color = feature.properties.couleur || '#808080';
     // Grand Lyon API color format is often "R G B" (e.g., "255 0 0")
     if (color && typeof color === 'string' && color.includes(' ')) {
@@ -314,18 +315,19 @@ export default function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Metro Lines Layer */}
-        {metroData && (
+        {/* Transport Lines Layers */}
+        {Object.entries(transportLines).map(([type, geojson]) => (
           <GeoJSON
-            data={metroData}
-            style={metroStyle}
+            key={type}
+            data={geojson}
+            style={lineStyle}
             onEachFeature={(feature, layer) => {
               if (feature.properties && feature.properties.ligne) {
-                layer.bindPopup(`Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
+                layer.bindPopup(`${type.toUpperCase()} Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
               }
             }}
           />
-        )}
+        ))}
 
         {vehicles.map((v) => {
           const lineCode = extractLineCode(v.lineId);
