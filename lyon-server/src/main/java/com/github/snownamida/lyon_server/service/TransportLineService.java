@@ -18,10 +18,12 @@ public class TransportLineService {
     public TransportLineService(
             @Value("${grandlyon.lines.metro}") String metroUrl,
             @Value("${grandlyon.lines.tram}") String tramUrl,
-            @Value("${grandlyon.lines.bus}") String busUrl) {
+            @Value("${grandlyon.lines.bus}") String busUrl,
+            @Value("${grandlyon.lines.rhonexpress}") String rhonexpressUrl) {
         this.lineUrls.put("metro", metroUrl);
         this.lineUrls.put("tram", tramUrl);
         this.lineUrls.put("bus", busUrl);
+        this.lineUrls.put("rhonexpress", rhonexpressUrl);
         this.restTemplate = new RestTemplate();
     }
 
@@ -34,9 +36,9 @@ public class TransportLineService {
         }
 
         String url = lineUrls.get(type);
-        if (url == null) return "{\"type\":\"FeatureCollection\",\"features\":[]}";
+        if (url == null)
+            return "{\"type\":\"FeatureCollection\",\"features\":[]}";
 
-            
         try {
             System.out.println("Fetching " + type + " data from Grand Lyon: " + url);
             String data = restTemplate.getForObject(URI.create(url), String.class);

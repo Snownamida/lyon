@@ -65,6 +65,7 @@ export default function Map() {
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>({
     metro: true,
     tram: true,
+    rhonexpress: true,
     bus: false
   });
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -124,6 +125,7 @@ export default function Map() {
     // Pre-fetch only the small ones or defaults
     fetchTransportLines('metro');
     fetchTransportLines('tram');
+    fetchTransportLines('rhonexpress');
 
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
