@@ -1,6 +1,6 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import L from 'leaflet';
@@ -60,6 +60,7 @@ const getVehicleConfig = (lineCode: string): VehicleConfig => {
 
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
+  const [metroData, setMetroData] = useState<any>(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isWakingUp, setIsWakingUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -89,6 +90,19 @@ export default function Map() {
     }
   };
 
+  const fetchMetroData = async () => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const response = await fetch(apiUrl + '/api/metro-lines');
+      if (response.ok) {
+        const jsonData = await response.json();
+        setMetroData(jsonData);
+      }
+    } catch (err) {
+      console.error("Error fetching metro lines:", err);
+    }
+  };
+
   useEffect(() => {
     // Detect mobile on mount
     if (window.innerWidth < 768) {
@@ -96,6 +110,7 @@ export default function Map() {
     }
 
     fetchData(); // Initial fetch
+    fetchMetroData(); // Fetch metro lines once
 
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
@@ -131,6 +146,22 @@ export default function Map() {
     late: 0,
     early: 0
   });
+
+  const metroStyle = (feature: any) => {
+    let color = feature.properties.couleur || '#808080';
+    // Grand Lyon API color format is often "R G B" (e.g., "255 0 0")
+    if (color && typeof color === 'string' && color.includes(' ')) {
+      const parts = color.split(' ');
+      if (parts.length === 3) {
+        color = `rgb(${parts[0]}, ${parts[1]}, ${parts[2]})`;
+      }
+    }
+    return {
+      color: color,
+      weight: 4,
+      opacity: 0.7
+    };
+  };
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
@@ -282,6 +313,20 @@ export default function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {/* Metro Lines Layer */}
+        {metroData && (
+          <GeoJSON
+            data={metroData}
+            style={metroStyle}
+            onEachFeature={(feature, layer) => {
+              if (feature.properties && feature.properties.ligne) {
+                layer.bindPopup(`Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
+              }
+            }}
+          />
+        )}
+
         {vehicles.map((v) => {
           const lineCode = extractLineCode(v.lineId);
           const { type, bgColor, borderRadius } = getVehicleConfig(lineCode);
