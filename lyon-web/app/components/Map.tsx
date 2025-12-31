@@ -38,6 +38,26 @@ interface VehicleData {
 
 const REFRESH_INTERVAL = 3000; // 3 seconds
 
+interface VehicleConfig {
+  type: string;
+  bgColor: string;
+  borderRadius?: string;
+}
+
+const extractLineCode = (lineId: string): string => {
+  const match = lineId.match(/ActIV:Line::(.*?):SYTRAL/);
+  return match ? match[1] : '?';
+};
+
+const getVehicleConfig = (lineCode: string): VehicleConfig => {
+  if (/^T\d+$/.test(lineCode)) return { type: 'Tramway', bgColor: '#864098' };
+  if (/^C\d+$/.test(lineCode)) return { type: 'Bus Chrono', bgColor: '#697a84', borderRadius: '8px' };
+  if (/^TB\d+$/.test(lineCode)) return { type: 'Trambus', bgColor: '#fdc210' };
+  if (lineCode === 'RX') return { type: 'Rhônexpress', bgColor: '#c9151d', borderRadius: '4px' };
+  if (/^\d+$/.test(lineCode)) return { type: 'Bus Standard', bgColor: '#ea2e2e' };
+  return { type: 'Other', bgColor: '#808080' };
+};
+
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -89,15 +109,8 @@ export default function Map() {
 
   // Statistics Calculation
   const stats = vehicles.reduce((acc, v) => {
-    const lineCodeRegex = /ActIV:Line::(.*?):SYTRAL/;
-    const match = v.lineId.match(lineCodeRegex);
-    const lineCode = match ? match[1] : '?';
-
-    let type = 'Standard Bus';
-    if (/^T\d+$/.test(lineCode)) type = 'Tramway';
-    else if (/^C\d+$/.test(lineCode)) type = 'Bus Chrono';
-    else if (/^TB\d+$/.test(lineCode)) type = 'Trambus';
-    else if (lineCode === 'RX') type = 'Rhônexpress';
+    const lineCode = extractLineCode(v.lineId);
+    const { type } = getVehicleConfig(lineCode);
 
     acc.counts[type] = (acc.counts[type] || 0) + 1;
     acc.total++;
@@ -270,35 +283,13 @@ export default function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {vehicles.map((v) => {
-          const lineCodeRegex = /ActIV:Line::(.*?):SYTRAL/;
-          const match = v.lineId.match(lineCodeRegex);
-          const lineCode = match ? match[1] : '?';
+          const lineCode = extractLineCode(v.lineId);
+          const { type, bgColor, borderRadius } = getVehicleConfig(lineCode);
 
           const dstMatch = v.destinationName ? v.destinationName.match(/ActIV:StopArea:(.*?):SYTRAL/) : null;
           const prettyDest = dstMatch ? dstMatch[1] : (v.destinationName || 'N/A');
 
-          let bgColor = '#808080';
-          let type = 'UNKNOWN';
-          let shape = 'border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);';
-
-          if (/^T\d+$/.test(lineCode)) {
-            type = 'Tramway';
-            bgColor = '#864098';
-          } else if (/^C\d+$/.test(lineCode)) {
-            type = 'Bus chrono';
-            bgColor = '#697a84';
-            shape += 'border-radius: 8px;';
-          } else if (/^\d+$/.test(lineCode)) {
-            type = 'Bus standard';
-            bgColor = '#ea2e2e';
-          } else if (/^TB\d+$/.test(lineCode)) {
-            type = 'Trambus';
-            bgColor = '#fdc210';
-          } else if (lineCode === 'RX') {
-            type = 'Rhônexpress';
-            bgColor = '#c9151d';
-            shape += 'border-radius: 4px;';
-          }
+          const shape = `border-radius: ${borderRadius || '50%'}; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);`;
 
           const icon = L.divIcon({
             className: 'custom-vehicle-icon',
