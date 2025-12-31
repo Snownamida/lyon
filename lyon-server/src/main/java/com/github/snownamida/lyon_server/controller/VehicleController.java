@@ -1,13 +1,11 @@
 package com.github.snownamida.lyon_server.controller;
 
-import com.github.snownamida.lyon_server.model.VehiclePosition;
-import com.github.snownamida.lyon_server.model.VehicleData;
-import com.github.snownamida.lyon_server.service.GrandLyonService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.github.snownamida.lyon_server.model.VehicleData;
+import com.github.snownamida.lyon_server.service.GrandLyonService;
 
 @RestController
 @RequestMapping("/api/vehicles")
