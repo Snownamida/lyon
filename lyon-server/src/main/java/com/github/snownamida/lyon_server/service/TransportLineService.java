@@ -18,9 +18,11 @@ public class TransportLineService {
 
     public TransportLineService(
             @Value("${grandlyon.lines.metro}") String metroUrl,
-            @Value("${grandlyon.lines.tram}") String tramUrl) {
+            @Value("${grandlyon.lines.tram}") String tramUrl,
+            @Value("${grandlyon.lines.bus}") String busUrl) {
         this.lineUrls.put("metro", metroUrl);
         this.lineUrls.put("tram", tramUrl);
+        this.lineUrls.put("bus", busUrl);
         this.restTemplate = new RestTemplate();
     }
 

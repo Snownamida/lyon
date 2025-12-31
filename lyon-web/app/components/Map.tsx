@@ -61,6 +61,11 @@ const getVehicleConfig = (lineCode: string): VehicleConfig => {
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [transportLines, setTransportLines] = useState<Record<string, any>>({});
+  const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>({
+    metro: true,
+    tram: true,
+    bus: false
+  });
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isWakingUp, setIsWakingUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -112,6 +117,7 @@ export default function Map() {
     fetchData(); // Initial fetch
     fetchTransportLines('metro');
     fetchTransportLines('tram');
+    fetchTransportLines('bus');
 
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
@@ -272,6 +278,32 @@ export default function Map() {
               Server Time: {data?.apiResponseTimestamp ? new Date(data.apiResponseTimestamp).toLocaleTimeString() : '---'}
             </div>
 
+            {/* Layer Toggles */}
+            <div style={{ marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px solid #edf2f7' }}>
+              <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#4a5568', textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.05em' }}>Display Layers</div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {Object.keys(visibleLayers).map(type => (
+                  <button
+                    key={type}
+                    onClick={() => setVisibleLayers(prev => ({ ...prev, [type]: !prev[type] }))}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      background: visibleLayers[type] ? '#4299e1' : '#edf2f7',
+                      color: visibleLayers[type] ? 'white' : '#4a5568',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '16px' }}>
               <div style={{ background: '#ebf8ff', padding: '12px', borderRadius: '14px', textAlign: 'center', border: '1px solid #bee3f8' }}>
                 <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#2b6cb0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total</div>
@@ -317,16 +349,18 @@ export default function Map() {
 
         {/* Transport Lines Layers */}
         {Object.entries(transportLines).map(([type, geojson]) => (
-          <GeoJSON
-            key={type}
-            data={geojson}
-            style={lineStyle}
-            onEachFeature={(feature, layer) => {
-              if (feature.properties && feature.properties.ligne) {
-                layer.bindPopup(`${type.toUpperCase()} Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
-              }
-            }}
-          />
+          visibleLayers[type] && (
+            <GeoJSON
+              key={type}
+              data={geojson}
+              style={lineStyle}
+              onEachFeature={(feature, layer) => {
+                if (feature.properties && feature.properties.ligne) {
+                  layer.bindPopup(`${type.toUpperCase()} Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
+                }
+              }}
+            />
+          )
         ))}
 
         {vehicles.map((v) => {
