@@ -11,8 +11,11 @@ import java.util.Map;
 @Service
 public class TransportLineService {
 
+    public record LineData(String geojson, String status) {
+    }
+
     private final Map<String, String> lineUrls = new HashMap<>();
-    private final Map<String, String> cachedLineData = new HashMap<>();
+    private final Map<String, LineData> cachedLineData = new HashMap<>();
     private final RestTemplate restTemplate;
 
     public TransportLineService(
@@ -29,7 +32,7 @@ public class TransportLineService {
 
     // Removed PostConstruct to avoid OOM on startup for large files
 
-    private synchronized String fetchLineData(String type) {
+    private synchronized LineData fetchLineData(String type) {
         // Double-check if it was fetched while waiting for lock
         if (cachedLineData.containsKey(type)) {
             return cachedLineData.get(type);
@@ -37,22 +40,26 @@ public class TransportLineService {
 
         String url = lineUrls.get(type);
         if (url == null)
-            return "{\"type\":\"FeatureCollection\",\"features\":[]}";
+            return new LineData("{\"type\":\"FeatureCollection\",\"features\":[]}", "NOT_FOUND");
 
         try {
             System.out.println("Fetching " + type + " data from Grand Lyon: " + url);
             String data = restTemplate.getForObject(URI.create(url), String.class);
-            cachedLineData.put(type, data);
+            LineData lineData = new LineData(data, "OK");
+            cachedLineData.put(type, lineData);
             System.out.println(type + " data cached successfully.");
-            return data;
+            return lineData;
+        } catch (org.springframework.web.client.ResourceAccessException e) {
+            System.err.println("API Timeout or Connection Refused: " + e.getMessage());
+            return new LineData("{\"type\":\"FeatureCollection\",\"features\":[]}", "API_DOWN");
         } catch (Exception e) {
             System.err.println("Failed to fetch " + type + " data: " + e.getMessage());
-            return "{\"type\":\"FeatureCollection\",\"features\":[]}";
+            return new LineData("{\"type\":\"FeatureCollection\",\"features\":[]}", "ERROR: " + e.getMessage());
         }
     }
 
-    public String getCachedLineData(String type) {
-        String data = cachedLineData.get(type);
+    public LineData getCachedLineData(String type) {
+        LineData data = cachedLineData.get(type);
         if (data == null) {
             return fetchLineData(type);
         }

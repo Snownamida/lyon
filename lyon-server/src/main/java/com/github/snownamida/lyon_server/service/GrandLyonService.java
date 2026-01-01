@@ -35,6 +35,7 @@ public class GrandLyonService {
     private volatile List<VehiclePosition> cachedPositions = Collections.emptyList();
     private volatile long lastFetchTime = 0;
     private volatile Instant lastApiTimestamp = null;
+    private volatile String apiStatus = "OK";
 
     // Cache valid for 3 seconds as requested
     private static final long CACHE_DURATION_MS = 3000;
@@ -46,12 +47,13 @@ public class GrandLyonService {
         synchronized (this) {
             // If cache is fresh (fetched less than 3s ago), return it
             if (now - lastFetchTime < CACHE_DURATION_MS) {
-                return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime));
+                return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime),
+                        apiStatus);
             }
 
             // Otherwise, fetch new data
             fetchDataFromApi();
-            return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime));
+            return new VehicleData(cachedPositions, lastApiTimestamp, Instant.ofEpochMilli(lastFetchTime), apiStatus);
         }
     }
 
@@ -63,6 +65,7 @@ public class GrandLyonService {
                     response.siri().serviceDelivery() == null ||
                     response.siri().serviceDelivery().vehicleMonitoringDelivery() == null) {
                 this.cachedPositions = Collections.emptyList();
+                this.apiStatus = "EMPTY_RESPONSE";
                 return;
             }
 
@@ -114,10 +117,16 @@ public class GrandLyonService {
 
             this.cachedPositions = result;
             this.lastFetchTime = System.currentTimeMillis();
+            this.apiStatus = "OK";
 
+        } catch (org.springframework.web.client.ResourceAccessException e) {
+            System.err.println("API Timeout or Connection Refused: " + e.getMessage());
+            this.apiStatus = "API_DOWN";
+            // Return empty list on failure
+            this.cachedPositions = Collections.emptyList();
         } catch (Exception e) {
             e.printStackTrace();
-            // Keep old cache on error or empty? Let's return empty to be safe
+            this.apiStatus = "ERROR: " + e.getMessage();
             this.cachedPositions = Collections.emptyList();
         }
     }

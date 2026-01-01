@@ -18,7 +18,7 @@ public class TransportLineController {
     }
 
     @GetMapping(value = "/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getLines(@PathVariable String type) {
+    public TransportLineService.LineData getLines(@PathVariable String type) {
         return transportLineService.getCachedLineData(type);
     }
 }

@@ -34,6 +34,7 @@ interface VehicleData {
   vehicles: VehiclePosition[];
   apiResponseTimestamp: string;
   lastFetchTime: string;
+  apiStatus?: string;
 }
 
 const REFRESH_INTERVAL = 3000; // 3 seconds
@@ -62,6 +63,7 @@ export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [transportLines, setTransportLines] = useState<Record<string, any>>({});
   const [lineLoading, setLineLoading] = useState<Record<string, boolean>>({});
+  const [lineStatus, setLineStatus] = useState<Record<string, string>>({});
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>({
     metro: true,
     tram: true,
@@ -101,15 +103,24 @@ export default function Map() {
     if (transportLines[type] || lineLoading[type]) return;
 
     setLineLoading(prev => ({ ...prev, [type]: true }));
+    setLineStatus(prev => ({ ...prev, [type]: 'OK' }));
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
       const response = await fetch(`${apiUrl}/api/lines/${type}`);
       if (response.ok) {
         const jsonData = await response.json();
-        setTransportLines(prev => ({ ...prev, [type]: jsonData }));
+        // jsonData is now { geojson: "...", status: "..." }
+        if (jsonData.status === 'OK') {
+          setTransportLines(prev => ({ ...prev, [type]: JSON.parse(jsonData.geojson) }));
+        } else {
+          setLineStatus(prev => ({ ...prev, [type]: jsonData.status }));
+        }
+      } else {
+        setLineStatus(prev => ({ ...prev, [type]: 'HTTP_' + response.status }));
       }
     } catch (err) {
       console.error(`Error fetching ${type} lines:`, err);
+      setLineStatus(prev => ({ ...prev, [type]: 'FETCH_ERROR' }));
     } finally {
       setLineLoading(prev => ({ ...prev, [type]: false }));
     }
@@ -286,36 +297,66 @@ export default function Map() {
               Server Time: {data?.apiResponseTimestamp ? new Date(data.apiResponseTimestamp).toLocaleTimeString() : '---'}
             </div>
 
+            {/* API Status Warning */}
+            {data?.apiStatus && data.apiStatus !== 'OK' && (
+              <div style={{
+                background: '#fff5f5',
+                border: '1px solid #feb2b2',
+                color: '#c53030',
+                padding: '10px 12px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                marginBottom: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <span style={{ fontSize: '16px' }}>⚠️</span>
+                <div>
+                  <strong>Grand Lyon API Issue:</strong><br />
+                  {data.apiStatus === 'API_DOWN' ? 'Upstream server unreachable' : data.apiStatus}
+                </div>
+              </div>
+            )}
+
             {/* Layer Toggles */}
             <div style={{ marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px solid #edf2f7' }}>
               <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#4a5568', textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.05em' }}>Display Layers</div>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {Object.keys(visibleLayers).map(type => (
-                  <button
-                    key={type}
-                    onClick={() => {
-                      if (!visibleLayers[type] && !transportLines[type]) {
-                        fetchTransportLines(type);
-                      }
-                      setVisibleLayers(prev => ({ ...prev, [type]: !prev[type] }));
-                    }}
-                    disabled={lineLoading[type]}
-                    style={{
-                      padding: '6px 12px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      cursor: lineLoading[type] ? 'wait' : 'pointer',
-                      background: visibleLayers[type] ? '#4299e1' : '#edf2f7',
-                      color: visibleLayers[type] ? 'white' : '#4a5568',
-                      transition: 'all 0.2s ease',
-                      opacity: lineLoading[type] ? 0.7 : 1
-                    }}
-                  >
-                    {lineLoading[type] ? '⌛ Loading...' : (type.charAt(0).toUpperCase() + type.slice(1))}
-                  </button>
-                ))}
+                {Object.keys(visibleLayers).map(type => {
+                  const hasError = lineStatus[type] && lineStatus[type] !== 'OK';
+                  const label = lineLoading[type]
+                    ? '⌛ Loading...'
+                    : (hasError ? `⚠️ ${type} Error` : (type.charAt(0).toUpperCase() + type.slice(1)));
+
+                  return (
+                    <button
+                      key={type}
+                      onClick={() => {
+                        if (!visibleLayers[type] && !transportLines[type]) {
+                          fetchTransportLines(type);
+                        }
+                        setVisibleLayers(prev => ({ ...prev, [type]: !prev[type] }));
+                      }}
+                      disabled={lineLoading[type]}
+                      title={hasError ? `Error: ${lineStatus[type]}` : undefined}
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        cursor: lineLoading[type] ? 'wait' : 'pointer',
+                        background: hasError ? '#fff5f5' : (visibleLayers[type] ? '#4299e1' : '#edf2f7'),
+                        color: hasError ? '#c53030' : (visibleLayers[type] ? 'white' : '#4a5568'),
+                        border: hasError ? '1px solid #feb2b2' : 'none',
+                        transition: 'all 0.2s ease',
+                        opacity: lineLoading[type] ? 0.7 : 1
+                      }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
