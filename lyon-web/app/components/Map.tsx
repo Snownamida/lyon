@@ -1,9 +1,20 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import L from 'leaflet';
+
+// Sub-component to access the map instance
+function MapController({ center }: { center: [number, number] | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.setView(center, 15, { animate: true });
+    }
+  }, [center, map]);
+  return null;
+}
 
 // Fix for default marker icon missing in React-Leaflet
 // @ts-ignore
@@ -64,6 +75,8 @@ export default function Map() {
   const [transportLines, setTransportLines] = useState<Record<string, any>>({});
   const [lineLoading, setLineLoading] = useState<Record<string, boolean>>({});
   const [lineStatus, setLineStatus] = useState<Record<string, string>>({});
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
+  const [requestedCenter, setRequestedCenter] = useState<[number, number] | null>(null);
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>({
     metro: true,
     tram: true,
@@ -138,15 +151,38 @@ export default function Map() {
     fetchTransportLines('tram');
     fetchTransportLines('rhonexpress');
 
+    // User Geolocation
+    let watchId: number | null = null;
+    if ('geolocation' in navigator) {
+      watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          setUserLocation([position.coords.latitude, position.coords.longitude]);
+        },
+        (err) => {
+          console.warn("Geolocation error:", err);
+        },
+        { enableHighAccuracy: true }
+      );
+    }
+
     // Actual Data Refresh
     const refreshInterval = setInterval(fetchData, REFRESH_INTERVAL);
 
     return () => {
       clearInterval(refreshInterval);
+      if (watchId !== null) navigator.geolocation.clearWatch(watchId);
     };
   }, []);
 
   const vehicles = data?.vehicles || [];
+
+  const centerOnUser = () => {
+    if (userLocation) {
+      setRequestedCenter([...userLocation]);
+      // Reset after a short delay to allow re-triggering
+      setTimeout(() => setRequestedCenter(null), 100);
+    }
+  };
 
   // Statistics Calculation
   const stats = vehicles.reduce((acc, v) => {
@@ -254,15 +290,40 @@ export default function Map() {
           alignItems: 'center',
           marginBottom: isCollapsed ? '0' : '16px'
         }}>
-          <h1 style={{
-            margin: 0,
-            fontSize: isCollapsed ? '14px' : '18px',
-            fontWeight: '800',
-            color: '#1a202c',
-            whiteSpace: 'nowrap'
-          }}>
-            {isCollapsed ? '📊 Stats' : 'Lyon Live Traffic'}
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h1 style={{
+              margin: 0,
+              fontSize: isCollapsed ? '14px' : '18px',
+              fontWeight: '800',
+              color: '#1a202c',
+              whiteSpace: 'nowrap'
+            }}>
+              {isCollapsed ? '📊 Stats' : 'Lyon Live Traffic'}
+            </h1>
+            {userLocation && !isCollapsed && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  centerOnUser();
+                }}
+                style={{
+                  background: '#ebf8ff',
+                  border: '1px solid #90cdf4',
+                  borderRadius: '12px',
+                  padding: '4px 8px',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  color: '#2b6cb0',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                📍 Me
+              </button>
+            )}
+          </div>
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -395,6 +456,17 @@ export default function Map() {
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(66, 153, 225, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(66, 153, 225, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(66, 153, 225, 0); }
+        }
+        .user-pulse-icon {
+            background: #4299e1;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
       `}</style>
 
       <MapContainer center={[45.7578137, 4.8320114]} zoom={13} style={{ height: '100vh', width: '100%' }}>
@@ -402,6 +474,26 @@ export default function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        <MapController center={requestedCenter} />
+
+        {/* User Location Marker */}
+        {userLocation && (
+          <Marker
+            position={userLocation}
+            icon={L.divIcon({
+              className: 'user-pulse-icon',
+              iconSize: [16, 16],
+              iconAnchor: [8, 8]
+            })}
+          >
+            <Popup>
+              <div style={{ padding: '4px', textAlign: 'center' }}>
+                <strong>You are here</strong>
+              </div>
+            </Popup>
+          </Marker>
+        )}
 
         {/* Transport Lines Layers */}
         {Object.entries(transportLines).map(([type, geojson]) => (
