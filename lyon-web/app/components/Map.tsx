@@ -89,6 +89,39 @@ const getVehicleConfig = (lineCode: string): VehicleConfig => {
   return { type: 'Other', bgColor: '#808080' };
 };
 
+const getStopColor = (desserte: string | undefined): string => {
+  if (!desserte) return '#4a5568'; // Default dark grey
+
+  const lines = desserte.split(',').map(s => s.split(':')[0]);
+
+  // Priority: Metro -> Funi -> Tram -> Rhonexpress -> C-Lines -> Bus
+  // Metro
+  if (lines.some(l => l === 'A')) return '#e63375'; // Pink
+  if (lines.some(l => l === 'B')) return '#5688bf'; // Blue
+  if (lines.some(l => l === 'C')) return '#f0ac00'; // Orange
+  if (lines.some(l => l === 'D')) return '#24a858'; // Green
+
+  // Funicular
+  if (lines.some(l => l.startsWith('F'))) return '#5e6e30';
+
+  // Tram (T1, T2...)
+  if (lines.some(l => /^T\d+/.test(l))) return '#864098';
+
+  // Trambus
+  if (lines.some(l => /^TB\d+/.test(l))) return '#fdc210';
+
+  // Rhonexpress
+  if (lines.includes('RX')) return '#c9151d';
+
+  // C-Lines (Bus Chrono)
+  if (lines.some(l => /^C\d+/.test(l))) return '#697a84';
+
+  // Standard Bus
+  if (lines.some(l => /^\d+/.test(l))) return '#ea2e2e';
+
+  return '#4a5568';
+};
+
 export default function Map() {
   const [data, setData] = useState<VehicleData | null>(null);
   const [transportLines, setTransportLines] = useState<Record<string, any>>({});
@@ -543,10 +576,15 @@ export default function Map() {
             <GeoJSON
               key={type}
               data={geojson}
-              style={lineStyle}
+              style={type === 'stops' ? (feature) => ({
+                fillColor: '#ffffff',
+                fillOpacity: 0.9,
+                color: getStopColor(feature?.properties?.desserte),
+                weight: 2,
+                radius: 5
+              }) : lineStyle}
               onEachFeature={(feature, layer) => {
                 if (type === 'stops') {
-                  // Stops handling
                   layer.on('click', (e: any) => {
                     const latlng = e.latlng;
                     const props = feature.properties;
@@ -564,13 +602,7 @@ export default function Map() {
               }}
               pointToLayer={(feature, latlng) => {
                 if (type === 'stops') {
-                  return L.circleMarker(latlng, {
-                    radius: 5,
-                    color: '#4a5568',
-                    fillColor: '#ffffff',
-                    fillOpacity: 0.9,
-                    weight: 2
-                  });
+                  return L.circleMarker(latlng);
                 }
                 return L.marker(latlng);
               }}
