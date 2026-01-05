@@ -25,6 +25,7 @@ public class GrandLyonService {
     private final RestTemplate restTemplate;
     private final String apiUrl;
     private final String passagesUrl;
+    private final ObjectMapper objectMapper;
 
     public GrandLyonService(@Value("${grandlyon.api.url}") String apiUrl,
             @Value("${grandlyon.api.passages}") String passagesUrl,
@@ -36,6 +37,8 @@ public class GrandLyonService {
         this.restTemplate = builder
                 .basicAuthentication(username, password)
                 .build();
+        this.objectMapper = new ObjectMapper()
+                .configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     private final java.util.concurrent.atomic.AtomicLong lastRequestTime = new java.util.concurrent.atomic.AtomicLong(
@@ -176,15 +179,17 @@ public class GrandLyonService {
                 return;
 
             try {
-                JsonNode root = restTemplate.getForObject(passagesUrl, JsonNode.class);
-                if (root != null && root.has("values")) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    List<Passage> newPassages = mapper.convertValue(root.get("values"),
-                            new TypeReference<List<Passage>>() {
-                            });
-                    this.cachedPassages = newPassages;
-                    this.lastPassagesFetchTime = now;
-                }
+                restTemplate.execute(passagesUrl, org.springframework.http.HttpMethod.GET, null, response -> {
+                    JsonNode root = objectMapper.readTree(response.getBody());
+                    if (root != null && root.has("values")) {
+                        List<Passage> newPassages = objectMapper.convertValue(root.get("values"),
+                                new TypeReference<List<Passage>>() {
+                                });
+                        this.cachedPassages = newPassages;
+                        this.lastPassagesFetchTime = now;
+                    }
+                    return null;
+                });
             } catch (Exception e) {
                 System.err.println("Error fetching passages: " + e.getMessage());
             }
