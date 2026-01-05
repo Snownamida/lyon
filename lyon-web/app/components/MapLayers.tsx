@@ -1,5 +1,6 @@
-import { GeoJSON, Marker, Popup } from 'react-leaflet';
+import { GeoJSON, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import { useEffect, useState } from 'react';
 import { VehiclePosition, Passage, StopInfo } from '../types';
 
 interface MapLayersProps {
@@ -68,6 +69,28 @@ export default function MapLayers({
     stopPassages,
     passagesLoading
 }: MapLayersProps) {
+    const map = useMap();
+    const [zoom, setZoom] = useState(map.getZoom());
+
+    useEffect(() => {
+        const onZoom = () => setZoom(map.getZoom());
+        map.on('zoomend', onZoom);
+        return () => {
+            map.off('zoomend', onZoom);
+        };
+    }, [map]);
+
+    // Dynamic Sizing Logic
+    const getSize = () => {
+        if (zoom >= 15) return 30;
+        if (zoom >= 13) return 24;
+        return 12; // Small dot
+    };
+
+    const size = getSize();
+    const showText = zoom >= 13;
+    const showArrow = zoom >= 13;
+
     return (
         <>
             {/* Transport Lines Layers */}
@@ -81,7 +104,7 @@ export default function MapLayers({
                             fillOpacity: 0.9,
                             color: getStopColor(feature?.properties?.desserte),
                             weight: 2,
-                            radius: 5
+                            radius: zoom >= 15 ? 6 : (zoom >= 13 ? 4 : 2)
                         }) : lineStyle}
                         onEachFeature={(feature, layer) => {
                             if (type === 'stops') {
@@ -156,59 +179,81 @@ export default function MapLayers({
                 const dstMatch = v.destinationName ? v.destinationName.match(/ActIV:StopArea:(.*?):SYTRAL/) : null;
                 const prettyDest = dstMatch ? dstMatch[1] : (v.destinationName || 'N/A');
 
-                const shape = `border-radius: ${borderRadius || '50%'}; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);`;
+                const shape = `
+                    border-radius: ${borderRadius || '50%'}; 
+                    width: ${size}px; 
+                    height: ${size}px; 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    color: white; 
+                    font-weight: bold; 
+                    font-size: ${size * 0.4}px; 
+                    border: ${zoom >= 13 ? '2px' : '1px'} solid white; 
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                `;
+
+                // Arrow Sizing
+                const arrowWidth = size;
+                const arrowHeight = size;
+                const borderArrowW = size * 0.3; // 9px at 30
+                const borderArrowH = size * 0.46; // 14px at 30
+                const innerArrowW = size * 0.2; // 6px at 30
+                const innerArrowH = size * 0.33; // 10px at 30
+                const arrowTopOffset = -1 * (size * 0.4); // -12px at 30
 
                 const icon = L.divIcon({
                     className: 'custom-vehicle-icon',
                     html: `
-              <div style="position: relative; width: 30px; height: 30px;">
+              <div style="position: relative; width: ${size}px; height: ${size}px;">
                 <div style="background-color: ${bgColor}; ${shape} position: absolute; top: 0; left: 0; z-index: 2;">
-                  ${lineCode}
+                  ${showText ? lineCode : ''}
                 </div>
-                <!-- Directional Arrow (Rotates) -->
+                
+                ${showArrow && v.bearing !== undefined ? `
                 <div style="
                   position: absolute; 
                   top: 0; 
                   left: 0; 
-                  width: 30px; 
-                  height: 30px; 
+                  width: ${arrowWidth}px; 
+                  height: ${arrowHeight}px; 
                   transform: rotate(${v.bearing || 0}deg); 
                   z-index: 1;
-                  display: ${v.bearing !== undefined ? 'block' : 'none'};
                 ">
                   <!-- White Border Arrow -->
                   <div style="
                     position: absolute; 
-                    top: -12px; 
+                    top: ${arrowTopOffset}px; 
                     left: 50%; 
-                    margin-left: -9px; 
+                    margin-left: -${borderArrowW}px; 
                     width: 0; 
                     height: 0; 
-                    border-left: 9px solid transparent; 
-                    border-right: 9px solid transparent; 
-                    border-bottom: 14px solid white;
+                    border-left: ${borderArrowW}px solid transparent; 
+                    border-right: ${borderArrowW}px solid transparent; 
+                    border-bottom: ${borderArrowH}px solid white;
                     z-index: 0;
                   "></div>
                   
                   <!-- Colored Inner Arrow -->
                   <div style="
                     position: absolute; 
-                    top: -8px; 
+                    top: -${innerArrowH * 0.8}px; 
                     left: 50%; 
-                    margin-left: -6px; 
+                    margin-left: -${innerArrowW}px; 
                     width: 0; 
                     height: 0; 
-                    border-left: 6px solid transparent; 
-                    border-right: 6px solid transparent; 
-                    border-bottom: 10px solid ${bgColor};
+                    border-left: ${innerArrowW}px solid transparent; 
+                    border-right: ${innerArrowW}px solid transparent; 
+                    border-bottom: ${innerArrowH}px solid ${bgColor};
                     z-index: 1;
                   "></div>
                 </div>
+                ` : ''}
               </div>
             `,
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15],
-                    popupAnchor: [0, -15]
+                    iconSize: [size, size],
+                    iconAnchor: [size / 2, size / 2],
+                    popupAnchor: [0, -size / 2]
                 });
 
                 return (
