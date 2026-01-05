@@ -176,6 +176,21 @@ export default function MapLayers({
                   z-index: 1;
                   display: ${v.bearing !== undefined ? 'block' : 'none'};
                 ">
+                  <!-- White Border Arrow -->
+                  <div style="
+                    position: absolute; 
+                    top: -12px; 
+                    left: 50%; 
+                    margin-left: -9px; 
+                    width: 0; 
+                    height: 0; 
+                    border-left: 9px solid transparent; 
+                    border-right: 9px solid transparent; 
+                    border-bottom: 14px solid white;
+                    z-index: 0;
+                  "></div>
+                  
+                  <!-- Colored Inner Arrow -->
                   <div style="
                     position: absolute; 
                     top: -8px; 
@@ -186,7 +201,7 @@ export default function MapLayers({
                     border-left: 6px solid transparent; 
                     border-right: 6px solid transparent; 
                     border-bottom: 10px solid ${bgColor};
-                    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+                    z-index: 1;
                   "></div>
                 </div>
               </div>
