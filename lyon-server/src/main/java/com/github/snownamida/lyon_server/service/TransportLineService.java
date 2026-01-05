@@ -22,11 +22,13 @@ public class TransportLineService {
             @Value("${grandlyon.lines.metro}") String metroUrl,
             @Value("${grandlyon.lines.tram}") String tramUrl,
             @Value("${grandlyon.lines.bus}") String busUrl,
-            @Value("${grandlyon.lines.rhonexpress}") String rhonexpressUrl) {
+            @Value("${grandlyon.lines.rhonexpress}") String rhonexpressUrl,
+            @Value("${grandlyon.lines.stops}") String stopsUrl) {
         this.lineUrls.put("metro", metroUrl);
         this.lineUrls.put("tram", tramUrl);
         this.lineUrls.put("bus", busUrl);
         this.lineUrls.put("rhonexpress", rhonexpressUrl);
+        this.lineUrls.put("stops", stopsUrl);
         this.restTemplate = new RestTemplate();
     }
 

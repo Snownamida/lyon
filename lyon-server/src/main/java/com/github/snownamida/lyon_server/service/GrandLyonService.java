@@ -14,17 +14,25 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.snownamida.lyon_server.model.Passage;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class GrandLyonService {
 
     private final RestTemplate restTemplate;
     private final String apiUrl;
+    private final String passagesUrl;
 
     public GrandLyonService(@Value("${grandlyon.api.url}") String apiUrl,
+            @Value("${grandlyon.api.passages}") String passagesUrl,
             @Value("${grandlyon.api.username}") String username,
             @Value("${grandlyon.api.password}") String password,
             RestTemplateBuilder builder) {
         this.apiUrl = apiUrl;
+        this.passagesUrl = passagesUrl;
         this.restTemplate = builder
                 .basicAuthentication(username, password)
                 .build();
@@ -36,6 +44,9 @@ public class GrandLyonService {
     private volatile long lastFetchTime = 0;
     private volatile Instant lastApiTimestamp = null;
     private volatile String apiStatus = "OK";
+
+    private volatile List<Passage> cachedPassages = Collections.emptyList();
+    private volatile long lastPassagesFetchTime = 0;
 
     // Cache valid for 3 seconds as requested
     private static final long CACHE_DURATION_MS = 3000;
@@ -128,6 +139,55 @@ public class GrandLyonService {
             e.printStackTrace();
             this.apiStatus = "ERROR: " + e.getMessage();
             this.cachedPositions = Collections.emptyList();
+        }
+    }
+
+    public List<Passage> getPassages(String stopId) {
+        long now = System.currentTimeMillis();
+        // Simple cache check with synchronization handles
+        boolean needsFetch = false;
+        synchronized (this) {
+            if (now - lastPassagesFetchTime > CACHE_DURATION_MS) {
+                needsFetch = true;
+            }
+        }
+
+        if (needsFetch) {
+            fetchPassagesFromApi();
+        }
+
+        List<Passage> currentPassages = cachedPassages;
+
+        if (stopId == null || stopId.isBlank()) {
+            return currentPassages;
+        }
+
+        return currentPassages.stream()
+                .filter(p -> stopId.equals(p.id()))
+                .sorted(java.util.Comparator.comparing(Passage::heurePassage,
+                        java.util.Comparator.nullsLast(String::compareTo)))
+                .toList();
+    }
+
+    private void fetchPassagesFromApi() {
+        synchronized (this) {
+            long now = System.currentTimeMillis();
+            if (now - lastPassagesFetchTime < CACHE_DURATION_MS)
+                return;
+
+            try {
+                JsonNode root = restTemplate.getForObject(passagesUrl, JsonNode.class);
+                if (root != null && root.has("values")) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    List<Passage> newPassages = mapper.convertValue(root.get("values"),
+                            new TypeReference<List<Passage>>() {
+                            });
+                    this.cachedPassages = newPassages;
+                    this.lastPassagesFetchTime = now;
+                }
+            } catch (Exception e) {
+                System.err.println("Error fetching passages: " + e.getMessage());
+            }
         }
     }
 

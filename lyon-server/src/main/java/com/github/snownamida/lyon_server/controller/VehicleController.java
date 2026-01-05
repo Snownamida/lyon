@@ -5,7 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.snownamida.lyon_server.model.VehicleData;
+import com.github.snownamida.lyon_server.model.Passage;
 import com.github.snownamida.lyon_server.service.GrandLyonService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -20,5 +24,10 @@ public class VehicleController {
     @GetMapping
     public VehicleData getVehicles() {
         return grandLyonService.getVehiclePositions();
+    }
+
+    @GetMapping("/passages")
+    public List<Passage> getPassages(@RequestParam(required = false) String stopId) {
+        return grandLyonService.getPassages(stopId);
     }
 }

@@ -41,6 +41,25 @@ interface VehiclePosition {
   vehicleStatus: string;
 }
 
+interface Passage {
+  id: string;
+  ligne: string;
+  direction: string;
+  delaipassage: string;
+  type: string;
+  heurepassage: string;
+  idtarretdestination: number;
+  coursetheorique: string;
+  gid: number;
+  last_update_fme: string;
+}
+
+interface StopInfo {
+  id: number;
+  name: string;
+  latlng: [number, number];
+}
+
 interface VehicleData {
   vehicles: VehiclePosition[];
   apiResponseTimestamp: string;
@@ -81,8 +100,12 @@ export default function Map() {
     metro: true,
     tram: true,
     rhonexpress: true,
-    bus: false
+    bus: false,
+    stops: true
   });
+  const [selectedStop, setSelectedStop] = useState<StopInfo | null>(null);
+  const [stopPassages, setStopPassages] = useState<Passage[] | null>(null);
+  const [passagesLoading, setPassagesLoading] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isWakingUp, setIsWakingUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -139,6 +162,24 @@ export default function Map() {
     }
   };
 
+  const fetchPassages = async (stopId: number) => {
+    setPassagesLoading(true);
+    setStopPassages(null);
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      // We filter by 'gid' which seems to match stop ID in some contexts, or we pass it as stopId param
+      const response = await fetch(`${apiUrl}/api/vehicles/passages?stopId=${stopId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setStopPassages(data);
+      }
+    } catch (err) {
+      console.error("Error fetching passages:", err);
+    } finally {
+      setPassagesLoading(false);
+    }
+  };
+
   useEffect(() => {
     // Detect mobile on mount
     if (window.innerWidth < 768) {
@@ -150,6 +191,7 @@ export default function Map() {
     fetchTransportLines('metro');
     fetchTransportLines('tram');
     fetchTransportLines('rhonexpress');
+    fetchTransportLines('stops');
 
     // User Geolocation
     let watchId: number | null = null;
@@ -503,13 +545,77 @@ export default function Map() {
               data={geojson}
               style={lineStyle}
               onEachFeature={(feature, layer) => {
-                if (feature.properties && feature.properties.ligne) {
+                if (type === 'stops') {
+                  // Stops handling
+                  layer.on('click', (e: any) => {
+                    const latlng = e.latlng;
+                    const props = feature.properties;
+                    const stopId = props.id; // User confirmed linkage by ID
+                    setSelectedStop({
+                      id: stopId,
+                      name: props.nom || 'Unknown Stop',
+                      latlng: [latlng.lat, latlng.lng]
+                    });
+                    fetchPassages(stopId);
+                  });
+                } else if (feature.properties && feature.properties.ligne) {
                   layer.bindPopup(`${type.toUpperCase()} Line ${feature.properties.ligne}: ${feature.properties.nom_trace || ''}`);
                 }
+              }}
+              pointToLayer={(feature, latlng) => {
+                if (type === 'stops') {
+                  return L.circleMarker(latlng, {
+                    radius: 5,
+                    color: '#4a5568',
+                    fillColor: '#ffffff',
+                    fillOpacity: 0.9,
+                    weight: 2
+                  });
+                }
+                return L.marker(latlng);
               }}
             />
           )
         ))}
+
+        {selectedStop && (
+          <Popup
+            position={selectedStop.latlng}
+            eventHandlers={{ remove: () => setSelectedStop(null) }}
+          >
+            <div style={{ minWidth: '200px' }}>
+              <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', borderBottom: '1px solid #eee', paddingBottom: '4px' }}>
+                🚏 {selectedStop.name}
+              </h3>
+              {passagesLoading ? (
+                <div style={{ color: '#666', fontStyle: 'italic' }}>Loading real-time info...</div>
+              ) : (
+                stopPassages && stopPassages.length > 0 ? (
+                  <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                    {stopPassages.map((p, idx) => (
+                      <div key={idx} style={{ marginBottom: '8px', borderBottom: '1px solid #f7fafc', paddingBottom: '4px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontWeight: 'bold' }}>{p.ligne}</span>
+                          <span style={{
+                            color: p.delaipassage === '0 min' ? '#e53e3e' : '#2b6cb0',
+                            fontWeight: 'bold'
+                          }}>
+                            {p.delaipassage}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '12px', color: '#718096' }}>
+                          To: {p.direction}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ color: '#a0aec0', fontSize: '13px' }}>No upcoming passages found.</div>
+                )
+              )}
+            </div>
+          </Popup>
+        )}
 
         {vehicles.map((v) => {
           const lineCode = extractLineCode(v.lineId);
