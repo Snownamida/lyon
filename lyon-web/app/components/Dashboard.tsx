@@ -255,6 +255,18 @@ export default function Dashboard({
                         <div style={{ padding: '12px', background: '#f7fafc', borderRadius: '12px', fontSize: '12px', color: '#4a5568', fontStyle: 'italic', border: '1px solid #edf2f7' }}>
                             💡 {stats.late > stats.early ? `Currently ${stats.late} vehicles are late.` : `Efficiency is high: ${stats.early} vehicles are ahead of schedule.`}
                         </div>
+
+                        <div style={{ marginTop: '12px', textAlign: 'center' }}>
+                            <a
+                                href="https://ko-fi.com/snownamida"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{ fontSize: '11px', color: '#a0aec0', textDecoration: 'none' }}
+                            >
+                                ☕ Soutenir
+                            </a>
+                        </div>
                     </div>
                 )}
             </div>
