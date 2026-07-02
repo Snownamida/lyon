@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://lyon-web.vercel.app";
+const siteUrl = "https://lyon.snownamida.top";
 const siteTitle = "Carte temps réel TCL Lyon — bus, tram, métro";
 const siteDescription =
   "Visualisez en temps réel les bus, tramways et métros du réseau TCL de Lyon sur une carte interactive : positions des véhicules, tracés des lignes et ponctualité, à partir des données ouvertes SYTRAL.";
