@@ -1,0 +1,5 @@
+# Identifiants du flux SIRI temps réel Grand Lyon (compte data.grandlyon.com).
+# Copier ce fichier en `.dev.vars` (git-ignoré) pour `wrangler dev`.
+# En production, les définir avec `wrangler secret put GRANDLYON_API_USERNAME` etc.
+GRANDLYON_API_USERNAME=votre-identifiant
+GRANDLYON_API_PASSWORD=votre-mot-de-passe

@@ -1,0 +1,12 @@
+name = "lyon-worker"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Les URL amont (SIRI, GeoJSON lignes/arrêts) sont publiques et vivent dans le
+# code (src/index.js → UPSTREAM), comme dans application.properties côté Java.
+#
+# Les identifiants d'accès au flux SIRI Grand Lyon sont des SECRETS, jamais
+# committés. En local : copier .dev.vars.example vers .dev.vars.
+# En production :
+#   wrangler secret put GRANDLYON_API_USERNAME
+#   wrangler secret put GRANDLYON_API_PASSWORD
