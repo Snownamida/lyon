@@ -63,3 +63,8 @@ s'exécute *avant* le cache, donc chaque requête entrante compte, même servie
 depuis le cache. Le plan gratuit couvre 100 000 requêtes/jour ; comme le
 frontend interroge toutes les 3 s, la vraie économie côté quota vient du
 frontend (mise en pause quand l'onglet est masqué, fréquence réduite), pas d'ici.
+
+## URL de production
+
+Déployé sur `https://lyon-worker.snownamida.workers.dev`, reconstruit
+automatiquement à chaque push sur `main` (Cloudflare Workers Builds).
