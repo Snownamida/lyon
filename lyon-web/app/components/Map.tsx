@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import L from 'leaflet';
+import { API_URL } from '../lib/config';
 import { useVehicleData } from '../hooks/useVehicleData';
 import { useTransportLines } from '../hooks/useTransportLines';
 import Dashboard from './Dashboard';
@@ -72,7 +73,7 @@ export default function Map() {
     setPassagesLoading(true);
     setStopPassages(null);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const apiUrl = API_URL;
       const response = await fetch(`${apiUrl}/api/vehicles/passages?stopId=${stopId}`);
       if (response.ok) {
         const data = await response.json();

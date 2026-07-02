@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from "../lib/config";
 
 interface TransportLineState {
     data: Record<string, any>;
@@ -17,7 +18,7 @@ export function useTransportLines() {
     setLineLoading(prev => ({ ...prev, [type]: true }));
     setLineStatus(prev => ({ ...prev, [type]: 'OK' }));
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const apiUrl = API_URL;
       const response = await fetch(`${apiUrl}/api/lines/${type}`);
       if (response.ok) {
         const jsonData = await response.json();

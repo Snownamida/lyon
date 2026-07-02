@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from "../lib/config";
 import { VehicleData } from '../types';
 
 const REFRESH_INTERVAL = 3000;
@@ -16,7 +17,7 @@ export function useVehicleData() {
     }
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const apiUrl = API_URL;
       const response = await fetch(apiUrl + '/api/vehicles');
       if (!response.ok) {
         throw new Error(`Server responded with ${response.status}`);
