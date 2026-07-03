@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <!-- 有轨电车正面 -->
+  <rect x="17" y="12" width="30" height="39" rx="9" fill="#fff"/>
+  <!-- 前挡风 -->
+  <rect x="21" y="17" width="22" height="12" rx="4" fill="#1d4ed8"/>
+  <!-- 车灯 -->
+  <circle cx="24" cy="36" r="2.4" fill="#1d4ed8"/>
+  <circle cx="40" cy="36" r="2.4" fill="#1d4ed8"/>
+  <!-- 底部裙板 -->
+  <rect x="20" y="51" width="9" height="5" rx="2.5" fill="#fff"/>
+  <rect x="35" y="51" width="9" height="5" rx="2.5" fill="#fff"/>
+  <!-- 受电弓 + 实时信号点 -->
+  <path d="M32 12 V6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="5" r="3" fill="#22c55e"/>
+</svg>
